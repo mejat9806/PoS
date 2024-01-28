@@ -1,0 +1,71 @@
+import { Suspense } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Spinner from "./UI/Spinner";
+import HomePage from "./page/HomePage";
+import AppLayout from "./page/AppLayout";
+import BBQ from "./page/BBQ";
+import Burger from "./page/Burger";
+import Drink from "./page/Drink";
+import Pizza from "./page/Pizza";
+import Side from "./page/Side";
+import PageNotFound from "./page/PageNotFound";
+import Order from "./page/Order";
+import OrderDetail from "./page/OrderDetail";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { Toaster } from "react-hot-toast";
+import SpecialMenu from "./page/SpecialMenu";
+
+function App() {
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 0,
+      },
+    },
+  });
+  return (
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
+      <BrowserRouter>
+        <Suspense fallback={<Spinner />}>
+          <Routes>
+            <Route element={<AppLayout />}>
+              <Route index element={<HomePage />} />
+              <Route path="bbq" element={<BBQ />} />
+              <Route path="burger" element={<Burger />} />
+              <Route path="drink" element={<Drink />} />
+              <Route path="pizza" element={<Pizza />} />
+              <Route path="special" element={<SpecialMenu />} />
+              <Route path="side" element={<Side />} />
+              <Route path="order" element={<Order />} />
+              <Route path="order/:id" element={<OrderDetail />} />
+              <Route path="*" element={<PageNotFound />} />
+            </Route>
+          </Routes>
+        </Suspense>
+      </BrowserRouter>
+      <Toaster
+        toastOptions={{
+          success: {
+            duration: 3000,
+          },
+          error: {
+            duration: 3000,
+          },
+          style: {
+            fontSize: "16px",
+            maxWidth: "500px",
+            padding: "16px 24px",
+            backgroundColor: "white",
+            color: "black",
+            opacity: "100",
+            border: "1px solid black",
+          },
+        }}
+      />
+    </QueryClientProvider>
+  );
+}
+
+export default App;
