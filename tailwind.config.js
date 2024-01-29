@@ -3,7 +3,7 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
-      gridTemplateColumns: { sidebar: "1.5fr 1fr" },
+      gridTemplateColumns: { sidebar: "1.5fr 1fr", mainpart: "2fr 0.2fr" },
       fontFamily: {
         roboto: "Roboto Mono, monospace", // sans is default tailwind and be replaced it
         // this will overwrite everything

@@ -15,6 +15,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
 import SpecialMenu from "./page/SpecialMenu";
+import MainLayOut from "./page/MainLayOut";
+import Setting from "./page/Setting";
 
 function App() {
   const queryClient = new QueryClient({
@@ -31,13 +33,16 @@ function App() {
         <Suspense fallback={<Spinner />}>
           <Routes>
             <Route element={<AppLayout />}>
-              <Route index element={<HomePage />} />
-              <Route path="bbq" element={<BBQ />} />
-              <Route path="burger" element={<Burger />} />
-              <Route path="drink" element={<Drink />} />
-              <Route path="pizza" element={<Pizza />} />
-              <Route path="special" element={<SpecialMenu />} />
-              <Route path="side" element={<Side />} />
+              <Route element={<MainLayOut />}>
+                <Route index element={<HomePage />} />
+                <Route path="bbq" element={<BBQ />} />
+                <Route path="burger" element={<Burger />} />
+                <Route path="drink" element={<Drink />} />
+                <Route path="pizza" element={<Pizza />} />
+                <Route path="special" element={<SpecialMenu />} />
+                <Route path="side" element={<Side />} />
+              </Route>
+              <Route path="setting" element={<Setting />} />
               <Route path="order" element={<Order />} />
               <Route path="order/:id" element={<OrderDetail />} />
               <Route path="*" element={<PageNotFound />} />

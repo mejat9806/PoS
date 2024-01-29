@@ -26,9 +26,7 @@ function Pizza() {
       <div className="flex justify-center ">
         <div className="md:grid md:grid-cols-2 w-fit gap-9  flex flex-col">
           {pizzaData.map((pizza) => (
-            <div className="">
-              <MenuItemCard item={pizza} key={pizza.id} />
-            </div>
+            <MenuItemCard item={pizza} key={pizza.id} />
           ))}
         </div>
       </div>

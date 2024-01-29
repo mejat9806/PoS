@@ -2,7 +2,6 @@ import toast from "react-hot-toast";
 import Spinner from "../UI/Spinner";
 import { useData } from "../data/useData";
 import MenuItemCard from "../UI/MenuItemCard";
-import { ReactNode } from "react";
 export type ProductData = {
   id: number;
   create_at: string;

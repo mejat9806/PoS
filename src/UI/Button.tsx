@@ -11,6 +11,7 @@ type ButtonStyles = {
 const normalButton = "bg-yellow-400";
 const buttonStyles: ButtonStyles = {
   addCart: "bg-yellow-400 hover:bg-black hover:text-yellow-400 ",
+
   normal: normalButton,
   error: `${normalButton} text-4xl`,
 };
