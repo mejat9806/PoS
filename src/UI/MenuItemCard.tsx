@@ -2,17 +2,33 @@ import { useState } from "react";
 import { ProductData } from "../page/BBQ";
 import { formatCurrency } from "../utils/helper";
 import Button from "./Button";
+import { useDispatch, useSelector } from "react-redux";
+import { addItem } from "../Cart/CartSlice";
+import { RootState } from "@reduxjs/toolkit/query";
+import AddToCartButton from "./AddToCartButton";
 
 type PropType = {
   item: ProductData;
 };
 
 function MenuItemCard({ item }: PropType) {
-  const { name, price, piece, category, imagesrc } = item;
+  const { id, name, price, piece, category, imagesrc } = item;
   const [imageLoaded, setImageLoaded] = useState<boolean>(false);
-
+  const cart = useSelector((state: RootState) => state.carts.cart);
+  const dispatch = useDispatch();
   function handleImageLoad() {
     setImageLoaded(true);
+  }
+  function handleAddtoCart(e: { preventDefault: () => void }) {
+    e.preventDefault();
+    const newItem = {
+      id: id,
+      name: name,
+      quantity: 1,
+      price: price,
+      totalPrice: price * 1,
+    };
+    dispatch(addItem(newItem));
   }
   if (category === "drink") {
     return (
@@ -33,7 +49,9 @@ function MenuItemCard({ item }: PropType) {
           </h2>
         </div>
         <div className="flex justify-center place-items-end ">
-          <Button style="addCart">add to cart</Button>
+          <AddToCartButton onClick={handleAddtoCart} id={id}>
+            add to cart
+          </AddToCartButton>
         </div>
       </div>
     );
@@ -60,7 +78,9 @@ function MenuItemCard({ item }: PropType) {
               }`}
             />
           </div>
-          <Button style="addCart">add to cart</Button>
+          <AddToCartButton onClick={handleAddtoCart} id={id}>
+            add to cart
+          </AddToCartButton>
         </div>
       </div>
     );
@@ -82,7 +102,9 @@ function MenuItemCard({ item }: PropType) {
         </h2>
       </div>
       <div className="flex justify-center items-center">
-        <Button style="addCart">add to cart</Button>
+        <AddToCartButton onClick={handleAddtoCart} id={id}>
+          add to cart
+        </AddToCartButton>
       </div>
     </div>
   );

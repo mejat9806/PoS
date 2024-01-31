@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import Cart from "../UI/Cart";
+import Cart from "../Cart/Cart";
 import { useState } from "react";
 import { LuArrowLeftToLine } from "react-icons/lu";
 
@@ -11,8 +11,8 @@ function MainLayOut() {
 
       <div
         className={`${
-          openCart ? "w-80" : "w-16 "
-        } bg-yellow-300 h-[70%] fixed  right-0  transition-all duration-100 top-0`}
+          openCart ? "w-[500px] border-black/20 mb-4 " : "w-16 "
+        } bg-yellow-300 h-screen fixed  right-0  transition-all duration-100 top-0 overflow-y-auto `}
       >
         {!openCart && (
           <button
@@ -24,10 +24,10 @@ function MainLayOut() {
         )}
 
         {openCart && <Cart setOpenCart={setOpenCart} openCart={openCart} />}
-        <div className="flex justify-center   relative">
+        <div className="flex justify-center   relative ">
           {!openCart && (
             <h1
-              className="rotate-90  font-roboto font-extrabold absolute top-[250px] cursor-pointer"
+              className="rotate-90  font-roboto font-extrabold absolute top-[300px] cursor-pointer"
               onClick={() => setOpenCart(!openCart)}
             >
               CART
