@@ -7,25 +7,25 @@ type ButtonTypeProps = {
   onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   children: ReactNode;
   id: number;
+  sold_out: boolean;
 };
 
-function AddToCartButton({ onClick, children, id }: ButtonTypeProps) {
+function AddToCartButton({ onClick, children, id, sold_out }: ButtonTypeProps) {
   const currentQty = useSelector(getCurrentQuantityById(id));
   const isIncart = currentQty >= 1;
-  const quantitylowerthan1 = currentQty <= 1;
   return (
     <div>
       {isIncart && (
         <div>
-          <UpdateQuantity
-            id={id}
-            currentQty={currentQty}
-            disabled={quantitylowerthan1}
-          ></UpdateQuantity>
+          <UpdateQuantity id={id} currentQty={currentQty}></UpdateQuantity>
         </div>
       )}
       {!isIncart && (
-        <Button style="addCart" onClick={onClick}>
+        <Button
+          style={`${!sold_out ? "addCart" : "soldOut"}`}
+          onClick={onClick}
+          sold_out={sold_out}
+        >
           {children}
         </Button>
       )}

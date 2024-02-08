@@ -2,8 +2,14 @@
 import { FaArrowRightToBracket } from "react-icons/fa6";
 import CartItem from "./CartItem";
 import { useSelector } from "react-redux";
-import { getChart } from "./CartSlice";
-import { Key } from "react";
+import { getCartPrice, getChart } from "./CartSlice";
+import { formatCurrency } from "../utils/helper";
+import Button from "../UI/Button";
+import { useCreateOrder } from "./useCreateOrder";
+import { useSettings } from "../setting/useSettings";
+import Spinner from "../UI/Spinner";
+import { useUpdateSetting } from "../setting/useUpdateSetting";
+import TableNumber from "../UI/TableNumber";
 
 type PropTypes = {
   openCart: boolean;
@@ -15,7 +21,7 @@ export type orderDataType = {
   name: string;
   quantity: number;
   price: number;
-  totalPrice?: number;
+  totalPrice: number;
 };
 /*
 const orderData: orderDataType[] = [
@@ -32,11 +38,24 @@ orderData.forEach((item) => {
   item.totalPrice = item.qty * item.price;
 }); */
 
-function Cart({ setOpenCart, openCart }: PropTypes) {
+function Cart({ setOpenCart }: PropTypes) {
+  const { isLoadingSetting, settingData } = useSettings();
+  const { isUpdatingSetting } = useUpdateSetting();
+
   const carts = useSelector(getChart);
-  console.log(carts);
+  const cartPrice = useSelector(getCartPrice);
+  const { creatingOrder } = useCreateOrder();
+  if (isLoadingSetting || isUpdatingSetting) return <Spinner />;
+
+  const pricesAfterTax = settingData.tax_rate
+    ? cartPrice * (settingData.tax_rate / 100)
+    : 0;
+  const handleSendData = () => {
+    const neworder = { cart: carts };
+    creatingOrder(neworder);
+  };
   return (
-    <div className="h-screen flex flex-col align-bottom">
+    <div className="h-screen flex flex-col align-bottom w-full">
       <div className="bg-black">
         <div className="flex items-center space-x-3  p-2 bg-black">
           <button
@@ -48,14 +67,41 @@ function Cart({ setOpenCart, openCart }: PropTypes) {
           <h1 className="text-3xl font-roboto text-white">Order Summary</h1>
         </div>
       </div>
-      <div className="divide-y-2 divide-slate-400/30 flex-1 overflow-y-auto">
+      <div>
+        <TableNumber />
+      </div>
+      <div className=" flex-1 overflow-y-auto ">
         {carts.map((cart: orderDataType) => (
           <div key={cart.name}>
             <CartItem orderData={cart} />
           </div>
         ))}
       </div>
-      <div className="flex justify-start mb-10">total chart X</div>
+      <div className="flex flex-col  text-yellow-300 text-lg uppercase font-semibold font-roboto w-full">
+        <div className="my-5 space-y-4  ">
+          <div className="  text-black p-6 rounded-3xl">
+            <div className="flex justify-between">
+              <h3>cart price </h3>
+              <span>{formatCurrency(cartPrice)}</span>
+            </div>
+            <div className="flex justify-between">
+              <h2>service tax({settingData.tax_rate}%) </h2>
+              <span>{formatCurrency(pricesAfterTax)}</span>
+            </div>
+            <div className="text-2xl flex justify-between">
+              <h2>total cart </h2>
+              <span className="font-extrabold">
+                {formatCurrency(pricesAfterTax + cartPrice)}
+              </span>
+            </div>
+          </div>
+          <div className="flex justify-center">
+            <Button style="addCartMain" onClick={handleSendData}>
+              Order
+            </Button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

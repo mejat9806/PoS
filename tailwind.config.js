@@ -7,6 +7,7 @@ export default {
         sidebar: "1.5fr 1fr",
         mainpart: "2fr 0.2fr",
         cart: "1fr 1fr 0.25fr 0.25fr",
+        booking: "0.2fr 1fr 0.02fr 0.2fr",
       },
       fontFamily: {
         roboto: "Roboto Mono, monospace", // sans is default tailwind and be replaced it

@@ -17,6 +17,7 @@ import { Toaster } from "react-hot-toast";
 import SpecialMenu from "./page/SpecialMenu";
 import MainLayOut from "./page/MainLayOut";
 import Setting from "./page/Setting";
+import CreateOrder from "./page/CreateOrder";
 
 function App() {
   const queryClient = new QueryClient({
@@ -33,8 +34,8 @@ function App() {
         <Suspense fallback={<Spinner />}>
           <Routes>
             <Route element={<AppLayout />}>
+              <Route index element={<HomePage />} />
               <Route element={<MainLayOut />}>
-                <Route index element={<HomePage />} />
                 <Route path="bbq" element={<BBQ />} />
                 <Route path="burger" element={<Burger />} />
                 <Route path="drink" element={<Drink />} />
@@ -44,6 +45,8 @@ function App() {
               </Route>
               <Route path="setting" element={<Setting />} />
               <Route path="order" element={<Order />} />
+
+              <Route path="createorder" element={<CreateOrder />} />
               <Route path="order/:id" element={<OrderDetail />} />
               <Route path="*" element={<PageNotFound />} />
             </Route>

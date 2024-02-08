@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getAllData } from "./MenuData/GetMenuData";
+import { getAllData } from "../MenuData/GetMenuData";
 
 export function useData() {
   const {
