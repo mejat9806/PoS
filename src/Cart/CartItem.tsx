@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import UpdateQuantity from "../UI/UpdateQuantity";
 import { orderDataType } from "./Cart";
 import { deleteItem, getCurrentQuantityById } from "./CartSlice";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { formatCurrency } from "../utils/helper";
+import UpdateQuantity from "../UI/UpdateQuantity";
 import Button from "../UI/Button";
 
 type typeCartProps = {

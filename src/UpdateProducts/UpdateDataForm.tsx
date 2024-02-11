@@ -1,11 +1,14 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import useUpdateProduct from "../MenuData/ProductData/useUpdateProduct";
-import { ProductsTypes } from "../MenuData/GetMenuData";
+
 import Button from "../UI/Button";
+import { ProductsTypes } from "../MenuData/GetMenuData";
+import useUpdateProduct from "../MenuData/ProductData/useUpdateProduct";
+
 export type itemsProps = { item: ProductsTypes; onCloseModal?: () => void };
 
 function UpdateDataForm({ item, onCloseModal }: itemsProps) {
   const { updateProduct } = useUpdateProduct();
+
   const { register, handleSubmit, watch, formState, reset } = useForm({
     defaultValues: item,
   });
@@ -30,30 +33,36 @@ function UpdateDataForm({ item, onCloseModal }: itemsProps) {
   const { errors } = formState;
 
   return (
-    <form onSubmit={handleSubmit(onSubmitData)} className="space-y-3">
+    <form onSubmit={handleSubmit(onSubmitData)} className=" w-full">
       <h1 className="font-semibold lg:text-6xl text-5xl font-menuTitle  mb-2">
         Update Data <span className="text-yellow-400 ">⤵</span>{" "}
       </h1>
-      <label htmlFor="name" className="flex justify-between items-center">
+      <label
+        htmlFor="name"
+        className="flex justify-between items-center gap-8 mb-3"
+      >
         <h1>Product Name</h1>
         <input
-          className={`disabled:bg-slate-300 disabled:cursor-not-allowed bg-slate-100 rounded-md focus:outline-none focus:ring focus:ring-yellow-300 p-2 placeholder-shown:capitalize ${
+          className={`disabled:bg-slate-300 disabled:cursor-not-allowed bg-slate-100 rounded-md focus:outline-none focus:ring p-2 placeholder-shown:capitalize ${
             errors?.price?.message !== undefined || !watch("name")
               ? "focus:ring-red-600"
-              : ""
+              : "focus:ring-yellow-300 "
           }`}
           type="text"
           id="name"
           {...register("name", { required: "This Required" })}
         />
       </label>
-      <label htmlFor="price" className="flex justify-between items-center">
+      <label
+        htmlFor="price"
+        className="flex justify-between items-center gap-8 mb-3"
+      >
         <h1>Product Price</h1>
         <input
-          className={`disabled:bg-slate-300 disabled:cursor-not-allowed bg-slate-100 rounded-md focus:outline-none focus:ring focus:ring-yellow-300 p-2 placeholder-shown:capitalize ${
-            errors?.price?.message !== undefined || !watch("price")
+          className={`disabled:bg-slate-300 disabled:cursor-not-allowed bg-slate-100 rounded-md focus:outline-none focus:ring p-2 placeholder-shown:capitalize ${
+            errors?.price?.message !== undefined || !watch("name")
               ? "focus:ring-red-600"
-              : ""
+              : "focus:ring-yellow-300 "
           }`}
           type="number"
           id="price"

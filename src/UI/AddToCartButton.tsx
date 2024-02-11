@@ -1,8 +1,8 @@
 import { ReactNode } from "react";
 import Button from "./Button";
 import { useSelector } from "react-redux";
-import { getCurrentQuantityById } from "../Cart/CartSlice";
 import UpdateQuantity from "./UpdateQuantity";
+import { getCurrentQuantityById } from "../Cart/CartSlice";
 type ButtonTypeProps = {
   onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   children: ReactNode;

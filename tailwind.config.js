@@ -10,10 +10,11 @@ export default {
         booking: "0.2fr 1fr 0.02fr 0.2fr",
       },
       fontFamily: {
-        roboto: "Roboto Mono, monospace", // sans is default tailwind and be replaced it
-        // this will overwrite everything
-        menu: "Rubik Doodle Shadow",
-        menuTitle: "Fjalla One",
+        roboto: "Roboto Mono, monospace ,sans-serif",
+
+        menu: "Rubik Doodle Shadow,sans-serif",
+
+        menuTitle: "Fjalla One,sans-serif",
       },
     },
   },

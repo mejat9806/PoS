@@ -1,7 +1,6 @@
-import { FocusEvent, useState } from "react";
+import { FocusEvent, useEffect, useRef, useState } from "react";
 import FormInput from "../UI/FormInput";
 import FormLabel from "../UI/FormLabel";
-import Spinner from "../UI/Spinner";
 import { useSettings } from "./useSettings";
 import { useUpdateSetting } from "./useUpdateSetting";
 import Button from "../UI/Button";
@@ -11,9 +10,12 @@ function SettingForm() {
   const { isLoadingSetting, settingData: { order_qty, tax_rate } = {} } =
     useSettings();
   const [formData, setFormData] = useState({});
-
-  // const { order_qty, tax_rate } = settingData;
+  const orderQtyRef = useRef<HTMLInputElement>(null); // Separate ref for order_qty
+  const taxRateRef = useRef<HTMLInputElement>(null); // Separate ref for tax_rate  // const { order_qty, tax_rate } = settingData;
   // console.log(order_qty);
+  useEffect(() => {
+    orderQtyRef.current?.focus();
+  }, []);
 
   function handleUpdate(
     e: FocusEvent<HTMLInputElement, Element>,
@@ -24,11 +26,9 @@ function SettingForm() {
     setFormData({ ...formData, [field]: value });
     //  updateSetting(); //this object will setting the setting dynamically based on the value and field value .this is called Computed Property Names Feature
   }
-  function handleSubmit(e) {
+  function handleSubmit() {
     updateSetting(formData);
   }
-
-  if (isLoadingSetting) return <Spinner />;
 
   return (
     <form onSubmit={handleSubmit}>
@@ -36,18 +36,20 @@ function SettingForm() {
         <FormInput
           type="number"
           id="order_qty"
+          ref={orderQtyRef}
           defaultValue={order_qty}
-          disabled={isUpdatingSetting}
-          onBlur={(e) => handleUpdate(e, "order_qty")}
+          disabled={isUpdatingSetting || isLoadingSetting}
+          onChange={(e) => handleUpdate(e, "order_qty")}
         />
       </FormLabel>
       <FormLabel label={"Tax Rate"}>
         <FormInput
           type="number"
           id="tax_rate"
+          ref={taxRateRef}
           defaultValue={tax_rate}
-          disabled={isUpdatingSetting}
-          onBlur={(e) => handleUpdate(e, "tax_rate")}
+          disabled={isUpdatingSetting || isLoadingSetting}
+          onChange={(e) => handleUpdate(e, "tax_rate")}
         />
       </FormLabel>
       <div className="flex justify-end">

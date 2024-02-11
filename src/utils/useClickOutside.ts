@@ -1,16 +1,19 @@
-import { useEffect, useRef, MutableRefObject } from "react";
+import { useEffect, useRef } from "react";
 
 type Handler = (event: MouseEvent) => void;
 
-export function useClickOutside(
+export function useClickOutside<T extends HTMLElement | HTMLDivElement>(
   handler: Handler,
   listenCapture = true,
-): MutableRefObject<HTMLElement | undefined> {
-  const ref = useRef<HTMLElement | undefined>();
+) {
+  const ref = useRef<T>(null);
 
   useEffect(() => {
     function handleClick(e: MouseEvent) {
       if (ref.current && !ref.current.contains(e.target as Node)) {
+        console.log(ref.current);
+        //!ref.current.contains(e.target as Node) will check if where we clicked contains the ref DOM or not
+        console.log(!ref.current.contains(e.target as Node));
         handler(e);
       }
     }

@@ -3,12 +3,12 @@ import { FaArrowRightToBracket } from "react-icons/fa6";
 import CartItem from "./CartItem";
 import { useSelector } from "react-redux";
 import { getCartPrice, getChart } from "./CartSlice";
-import { formatCurrency } from "../utils/helper";
-import Button from "../UI/Button";
 import { useCreateOrder } from "./useCreateOrder";
 import { useSettings } from "../setting/useSettings";
-import Spinner from "../UI/Spinner";
 import { useUpdateSetting } from "../setting/useUpdateSetting";
+import Spinner from "../UI/Spinner";
+import { formatCurrency } from "../utils/helper";
+import Button from "../UI/Button";
 import TableNumber from "../UI/TableNumber";
 
 type PropTypes = {

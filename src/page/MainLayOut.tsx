@@ -1,9 +1,9 @@
 import { Outlet } from "react-router-dom";
-import Cart from "../Cart/Cart";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { getChart } from "../Cart/CartSlice";
 import { IoCartSharp } from "react-icons/io5";
+import { getChart } from "../Cart/CartSlice";
+import Cart from "../Cart/Cart";
 
 function MainLayOut() {
   const [openCart, setOpenCart] = useState<boolean>(false);
@@ -16,7 +16,11 @@ function MainLayOut() {
     }
   }, [carts]);
   return (
-    <div className="  grid grid-cols-mainpart">
+    /*     <div className="  grid grid-cols-mainpart">
+    
+     */
+
+    <div className="mx-20">
       <Outlet />
 
       <div

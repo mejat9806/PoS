@@ -14,13 +14,20 @@ type FormInputProps = {
 };
 
 const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
-  (
-    { type, id, defaultValue, disabled, min, onChange, error = {}, inputMode },
-    ref,
-  ) => {
+  ({
+    type,
+    id,
+    defaultValue,
+    disabled,
+    min,
+    onChange,
+    error,
+    inputMode,
+    inputRef,
+  }) => {
     return (
       <input
-        ref={ref}
+        ref={inputRef}
         inputMode={inputMode}
         className={`disabled:bg-slate-300 disabled:cursor-not-allowed bg-slate-100 rounded-md focus:outline-none focus:ring-yellow-300 p-2 placeholder-shown:capitalize focus:ring-4 focus:ring-offset-4 ${
           error !== undefined ? "focus:ring-red-600" : ""

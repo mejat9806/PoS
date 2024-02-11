@@ -10,6 +10,7 @@ import React, {
 import Button from "./Button";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { createPortal } from "react-dom";
+import useClickOutside from "../utils/useClickOutside";
 
 type MenuContextProps = {
   openId: null | number;
@@ -19,15 +20,24 @@ type MenuContextProps = {
   setRectPosition: Dispatch<SetStateAction<{ x: number; y: number } | null>>;
 };
 
-const MenuContext = createContext<MenuContextProps | undefined>(undefined);
-
-interface DropDownMenusProps {
+interface MenuProps {
   children: ReactNode;
 }
 
-function DropDownMenus({ children }: DropDownMenusProps) {
+interface ToggleProps {
+  id: number | string;
+}
+
+interface ListProps {
+  id: number;
+  children: ReactNode;
+}
+const MenuContext = createContext<MenuContextProps | undefined>(undefined);
+
+function Menu({ children }: MenuProps) {
   const [openId, setOpenId] = useState<number | null>(null);
   const close = () => setOpenId(null);
+
   const [rectPosition, setRectPosition] = useState<{
     x: number;
     y: number;
@@ -41,18 +51,6 @@ function DropDownMenus({ children }: DropDownMenusProps) {
       {children}
     </MenuContext.Provider>
   );
-}
-
-interface MenuProps {
-  children: ReactNode;
-}
-
-function Menu({ children }: MenuProps) {
-  return <div className="relative">{children}</div>;
-}
-
-interface ToggleProps {
-  id: number;
 }
 
 function Toggle({ id }: ToggleProps) {
@@ -84,7 +82,7 @@ function Toggle({ id }: ToggleProps) {
 
       setRectPosition(newRectPosition);
 
-      openId !== id ? open(id) : close();
+      openId !== id ? open(id as number) : close();
     }
   }
 
@@ -95,13 +93,10 @@ function Toggle({ id }: ToggleProps) {
   );
 }
 
-interface ListProps {
-  id: number;
-  children: ReactNode;
-}
-
 function List({ id, children }: ListProps) {
-  const { openId, rectPosition } = useContext(MenuContext)!;
+  console.log(id);
+  const { openId, rectPosition, close } = useContext(MenuContext)!;
+  const ref = useClickOutside(close) as React.RefObject<HTMLUListElement>; // Type assertion
 
   if (openId !== id || !rectPosition) return null; //this mean is their is no menu open return null
   const dropdownStyle: React.CSSProperties = {
@@ -109,13 +104,14 @@ function List({ id, children }: ListProps) {
     zIndex: 50,
     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
     borderRadius: "4px",
-    top: `${rectPosition.y - 50}px`,
-    right: `${rectPosition.x - 150}px`,
+    top: `${rectPosition.y}px`,
+    right: `${rectPosition.x}px`,
   };
   return createPortal(
-    <div style={dropdownStyle}>
-      <ul>{children}</ul>
-    </div>,
+    <ul style={dropdownStyle} ref={ref}>
+      {children}
+    </ul>,
+
     document.body,
   );
 }
@@ -143,9 +139,9 @@ function Buttons({ children, onClick, disabled }: ButtonsProps) {
   );
 }
 
-DropDownMenus.Menu = Menu;
-DropDownMenus.Toggle = Toggle;
-DropDownMenus.List = List;
-DropDownMenus.Button = Buttons;
+Menu.Menu = Menu;
+Menu.Toggle = Toggle;
+Menu.List = List;
+Menu.Button = Buttons;
 
-export default DropDownMenus;
+export default Menu;

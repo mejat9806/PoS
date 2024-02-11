@@ -1,8 +1,8 @@
 import { useDispatch } from "react-redux";
 import Button from "./Button";
-import { decreaseQty, increaseQty } from "../Cart/CartSlice";
 import Spinner from "./Spinner";
 import { useSettings } from "../setting/useSettings";
+import { decreaseQty, increaseQty } from "../Cart/CartSlice";
 type updateQuantityProps = {
   id: number;
   currentQty: number;
