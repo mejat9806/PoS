@@ -25,6 +25,7 @@ const buttonStyles: ButtonStyles = {
   addCartMain: `bg-green-300 text-black hover:bg-green-600 hover:text-yellow-400 ${normalButton} transition-all duration-150 w-full mx-5 `,
   circle: `rounded-3xl bg-teal-300 px-4 py-2 disabled:bg-gray-700/40 disabled:cursor-not-allowed font-extrabold text-xl `,
   delete: `rounded-full bg-red-500 px-4  disabled:bg-gray-700/40 disabled:cursor-not-allowed font-extrabold text-sm h-10`,
+  deleteItemButton: ` rounded-md bg-red-300 px-4  ${normalButton} hover:text-red-600 hover:bg-black`,
   normal: `${normalButton} bg-yellow-300 rounded-md hover:bg-black hover:text-yellow-300 transition-all duration-150`,
   threeDots: "px-0  py-4 rounded-full hover:bg-gray-100",
   error: `${normalButton} text-4xl`,

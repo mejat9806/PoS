@@ -58,3 +58,11 @@ export async function updateProductData(newData: ProductsTypes, id: number) {
   return data;
 }
  */
+
+export async function deleteProduct(id: number) {
+  const { error, data } = await supabase.from("Product").delete().eq("id", id);
+  if (error) {
+    throw new Error(error.message);
+  }
+  return data;
+}

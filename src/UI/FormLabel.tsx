@@ -7,12 +7,13 @@ type FormLabel = {
   error?:
     | string
     | FieldError
-    | Merge<FieldError, FieldErrorsImpl<never>>
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    | Merge<FieldError, FieldErrorsImpl<any>>
     | undefined;
 };
 function FormLabel({ label, children, error }: FormLabel) {
   return (
-    <div className="grid grid-cols-2 mb-10 mt-3 items-center content-end  relative text-start">
+    <div className="grid grid-cols-2 mb-10 mt-3 items-center content-end  relative text-start gap-5">
       {label && (
         <label
           htmlFor={children.props.id}

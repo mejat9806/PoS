@@ -22,6 +22,7 @@ function SettingForm() {
     field: string,
   ) {
     const value = e.target.value;
+    console.log(value);
     if (!value) return;
     setFormData({ ...formData, [field]: value });
     //  updateSetting(); //this object will setting the setting dynamically based on the value and field value .this is called Computed Property Names Feature

@@ -8,6 +8,7 @@ import { addItem } from "../Cart/CartSlice";
 import UpdateDataForm from "../UpdateProducts/UpdateDataForm";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import Menu from "../UI/Menus";
+import ConfirmDelete from "./ConfirmDelete";
 export type PropType = {
   item: ProductDataProps;
 };
@@ -97,9 +98,9 @@ function MenuItemCard({ item }: PropType) {
                     update
                   </Menu.Button>
                 </ModalWindow.OpenFunction>
-                <ModalWindow.OpenFunction opens="update">
+                <ModalWindow.OpenFunction opens="delete">
                   <Menu.Button icon={<BsThreeDotsVertical />}>
-                    update
+                    delete
                   </Menu.Button>
                 </ModalWindow.OpenFunction>
               </Menu.List>
@@ -107,8 +108,8 @@ function MenuItemCard({ item }: PropType) {
               <ModalWindow.WindowFunction name="update">
                 <UpdateDataForm item={item} />
               </ModalWindow.WindowFunction>
-              <ModalWindow.WindowFunction name="option2">
-                <div>HEllo</div>
+              <ModalWindow.WindowFunction name="delete">
+                <ConfirmDelete item={item} />
               </ModalWindow.WindowFunction>
             </Menu.Menu>
           </ModalWindow>
