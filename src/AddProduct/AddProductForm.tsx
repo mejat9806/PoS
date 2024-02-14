@@ -2,10 +2,43 @@ import { FieldValues, useForm } from "react-hook-form";
 import Button from "../UI/Button";
 import FormLabel from "../UI/FormLabel";
 import { useState } from "react";
+import useAddItem from "./useAddItem";
+import { newDataType } from "../MenuData/GetMenuData";
 
-function AddProductForm() {
+type addProductsProps = { onCloseModal: () => void };
+const categories: string[] = [
+  "drink",
+  "bbq_beef",
+  "bbq_chicken",
+  "bbq_fish",
+  "burger_beef",
+  "burger_chicken",
+  "pizza",
+  "special_beef",
+  "special_sandwich",
+  "sides",
+];
+const NoImageAndDescription: string[] = [
+  "drink",
+  "select category",
+  "bbq beef",
+  "bbq chicken",
+  "bbq fish",
+  "select_category",
+];
+const ImageAndDescription: string[] = [
+  "burger beef",
+  "burger chicken",
+  "pizza",
+  "special beef",
+  "special sandwich",
+  "sides",
+  "select_category",
+];
+const catogoryWithPiece: string[] = ["bbq chicken", "bbq fish"];
+function AddProductForm({ onCloseModal }: addProductsProps) {
   const [categoryToWatched, setCategoryToWatched] = useState("select_category");
-  console.log(categoryToWatched);
+  const { addProduct, isAdding } = useAddItem();
   const {
     register,
     formState,
@@ -15,40 +48,6 @@ function AddProductForm() {
     reset,
     clearErrors,
   } = useForm();
-  const categories: string[] = [
-    "drink",
-    "bbq_beef",
-    "bbq_chicken",
-    "bbq_fish",
-    "burger_beef",
-    "burger_chicken",
-    "pizza",
-    "special_beef",
-    "special_sandwich",
-    "sides",
-  ];
-  const NoImageAndDescription: string[] = [
-    "drink",
-    "select category",
-    "bbq beef",
-    "bbq chicken",
-    "bbq fish",
-    "select_category",
-  ];
-  const ImageAndDescription: string[] = [
-    "burger beef",
-    "burger chicken",
-    "pizza",
-    "special beef",
-    "special sandwich",
-    "sides",
-    "select_category",
-  ];
-  const catogoryWithPiece: string[] = [
-    "bbq chicken",
-    "select_category",
-    "bbq fish",
-  ];
   const selectedCategory = watch("category");
   //const categoryToWatched = selectedCategory;
   // console.log(categoryToWatched);
@@ -56,13 +55,18 @@ function AddProductForm() {
   //const testgetvalue = getValues("name");//this just a test getvalue
   //console.log(testgetvalue);
   const { errors } = formState;
-  /* const ValidationForcategoryWithNoImageAndDescription = {
+  /*  const ValidationForcategoryWithNoImageAndDescription = {
     required: !NoImageAndDescription.includes(categoryToWatched)
       ? false
       : "This is required",
   }; */
   const ValidationForcategoryWithImageAndDescription = {
     required: !ImageAndDescription.includes(categoryToWatched)
+      ? false
+      : "This is required",
+  };
+  const ValidationForcategoryWithPiece = {
+    required: !catogoryWithPiece.includes(categoryToWatched)
       ? false
       : "This is required",
   };
@@ -82,9 +86,9 @@ function AddProductForm() {
   }
   function onSubmit(data: FieldValues) {
     const { category } = data;
-
+    const image =
+      typeof data.imagesrc === "string" ? data.imagesrc : data.imagesrc[0]; //the data.image[0] is the filelist during creation of new cabin
     const categoryToSend = category?.replace(" ", "_");
-    console.log(categoryToSend);
     if (category === "select category") {
       clearErrors("category"); // Clear any existing errors
       return setError("category", {
@@ -92,8 +96,20 @@ function AddProductForm() {
         message: "Please select a category.", // Set a custom error message
       });
     }
-    const newData = { ...data, category: categoryToSend };
+    const newData = {
+      ...data,
+      category: categoryToSend,
+      piece: data.piece === "" ? undefined : data.piece,
+      description: data.piece === "" ? undefined : data.description,
+      imagesrc: image,
+    };
     console.log(newData);
+    addProduct(newData as newDataType, {
+      onSuccess: () => {
+        reset();
+        onCloseModal?.();
+      },
+    });
   }
 
   return (
@@ -114,9 +130,7 @@ function AddProductForm() {
             resetFormOnCategoryChange();
           }}
         >
-          <option disabled={true} selected={true}>
-            select category
-          </option>
+          <option disabled={true}>select category</option>
           {categories.map((category) => (
             <option key={category}>{category.replace("_", " ")}</option>
           ))}
@@ -131,7 +145,7 @@ function AddProductForm() {
           } p-2 placeholder-shown:capitalize`}
           type="text"
           id="name"
-          disabled={categoryToWatched === "select_category"}
+          disabled={categoryToWatched === "select_category" || isAdding}
           {...register("name", { required: "This is required" })}
         />
       </FormLabel>
@@ -169,10 +183,11 @@ function AddProductForm() {
           type="text"
           inputMode="numeric"
           id="piece"
-          {...register("piece", ValidationForcategoryWithImageAndDescription)}
+          {...register("piece", ValidationForcategoryWithPiece)}
           disabled={
+            categoryToWatched === "select_category " ||
             !catogoryWithPiece.includes(categoryToWatched) ||
-            categoryToWatched === "select_category"
+            isAdding
           }
         />
       </FormLabel>
@@ -203,7 +218,10 @@ function AddProductForm() {
           } p-2 placeholder-shown:capitalize`}
           type="file"
           id="imagesrc"
-          disabled={NoImageAndDescription.includes(categoryToWatched)}
+          accept="imagesrc/*"
+          disabled={
+            NoImageAndDescription.includes(categoryToWatched) || isAdding
+          }
           {...register(
             "imagesrc",
             ValidationForcategoryWithImageAndDescription,

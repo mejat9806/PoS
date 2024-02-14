@@ -16,6 +16,7 @@ export type PropType = {
 const categoriesWithNOImages = ["bbq_fish", "bbq_beef", "bbq_chicken", "drink"];
 function MenuItemCard({ item }: PropType) {
   const { id, name, price, piece, category, imagesrc = "", sold_out } = item;
+
   console.log(category);
   const hasNoImage = categoriesWithNOImages.includes(category);
 
@@ -42,7 +43,7 @@ function MenuItemCard({ item }: PropType) {
         !hasNoImage ? "flex-col" : ""
       } border-transparent border-2 hover:border-2 px-2 md:px-5 py-2 rounded-md hover:border-black/20 bg-slate-200/20 ${
         sold_out ? "bg-slate-300 hover:bg-red-100" : " hover:bg-yellow-100"
-      } ${category === "drink" ? "flex-col " : ""} `}
+      } ${category === "drink" ? "flex-col " : ""}   `}
     >
       <div className={`flex flex-col `}>
         <h1

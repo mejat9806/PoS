@@ -10,6 +10,11 @@ import Spinner from "../UI/Spinner";
 import { formatCurrency } from "../utils/helper";
 import Button from "../UI/Button";
 import TableNumber from "../UI/TableNumber";
+import { useState } from "react";
+import { getOrderData } from "../Orders/getOrder";
+import { useOrderData } from "../Orders/useOrderData";
+import toast from "react-hot-toast";
+import EmptyCart from "../UI/EmptyCart";
 
 type PropTypes = {
   openCart: boolean;
@@ -39,19 +44,25 @@ orderData.forEach((item) => {
 }); */
 
 function Cart({ setOpenCart }: PropTypes) {
+  const [tableNo, setTableNo] = useState<string | number>("select table");
   const { isLoadingSetting, settingData } = useSettings();
   const { isUpdatingSetting } = useUpdateSetting();
-
+  const { orderData, loadingOrderdata } = useOrderData();
+  console.log(orderData);
   const carts = useSelector(getChart);
   const cartPrice = useSelector(getCartPrice);
   const { creatingOrder } = useCreateOrder();
-  if (isLoadingSetting || isUpdatingSetting) return <Spinner />;
-
+  if (isLoadingSetting || isUpdatingSetting || loadingOrderdata)
+    return <Spinner />;
+  console.log(carts.length);
   const pricesAfterTax = settingData.tax_rate
     ? cartPrice * (settingData.tax_rate / 100)
     : 0;
   const handleSendData = () => {
-    const neworder = { cart: carts };
+    if (typeof tableNo === "string")
+      return toast.error("Please select table NUMBER");
+    const neworder = { cart: carts, TableNo: tableNo };
+    console.log(neworder);
     creatingOrder(neworder);
   };
   return (
@@ -67,16 +78,25 @@ function Cart({ setOpenCart }: PropTypes) {
           <h1 className="text-3xl font-roboto text-white">Order Summary</h1>
         </div>
       </div>
-      <div>
-        <TableNumber />
-      </div>
       <div className=" flex-1 overflow-y-auto ">
-        {carts.map((cart: orderDataType) => (
-          <div key={cart.name}>
-            <CartItem orderData={cart} />
+        {carts.length === 0 ? (
+          <EmptyCart />
+        ) : (
+          <div>
+            <div>
+              <TableNumber setTableNo={setTableNo} tableNo={tableNo} />
+            </div>
+            <div className=" flex-1 overflow-y-auto ">
+              {carts.map((cart: orderDataType) => (
+                <div key={cart.name}>
+                  <CartItem orderData={cart} />
+                </div>
+              ))}
+            </div>
           </div>
-        ))}
+        )}
       </div>
+
       <div className="flex flex-col  text-yellow-300 text-lg uppercase font-semibold font-roboto w-full">
         <div className="my-5 space-y-4  ">
           <div className="  text-black p-6 rounded-3xl">
@@ -96,7 +116,11 @@ function Cart({ setOpenCart }: PropTypes) {
             </div>
           </div>
           <div className="flex justify-center">
-            <Button style="addCartMain" onClick={handleSendData}>
+            <Button
+              style="addCartMain"
+              onClick={handleSendData}
+              disabled={carts.length === 0}
+            >
               Order
             </Button>
           </div>

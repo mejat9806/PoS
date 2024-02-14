@@ -7,11 +7,14 @@ import Button from "../UI/Button";
 
 function SettingForm() {
   const { isUpdatingSetting, updateSetting } = useUpdateSetting();
-  const { isLoadingSetting, settingData: { order_qty, tax_rate } = {} } =
-    useSettings();
+  const {
+    isLoadingSetting,
+    settingData: { order_qty, tax_rate, table_no } = {},
+  } = useSettings();
   const [formData, setFormData] = useState({});
-  const orderQtyRef = useRef<HTMLInputElement>(null); // Separate ref for order_qty
-  const taxRateRef = useRef<HTMLInputElement>(null); // Separate ref for tax_rate  // const { order_qty, tax_rate } = settingData;
+  const orderQtyRef = useRef<HTMLInputElement>(null);
+  const taxRateRef = useRef<HTMLInputElement>(null);
+  const tableNo = useRef<HTMLInputElement>(null);
   // console.log(order_qty);
   useEffect(() => {
     orderQtyRef.current?.focus();
@@ -22,7 +25,6 @@ function SettingForm() {
     field: string,
   ) {
     const value = e.target.value;
-    console.log(value);
     if (!value) return;
     setFormData({ ...formData, [field]: value });
     //  updateSetting(); //this object will setting the setting dynamically based on the value and field value .this is called Computed Property Names Feature
@@ -51,6 +53,16 @@ function SettingForm() {
           defaultValue={tax_rate}
           disabled={isUpdatingSetting || isLoadingSetting}
           onChange={(e) => handleUpdate(e, "tax_rate")}
+        />
+      </FormLabel>
+      <FormLabel label={"No Table"}>
+        <FormInput
+          type="number"
+          id="table_no"
+          ref={tableNo}
+          defaultValue={table_no}
+          disabled={isUpdatingSetting || isLoadingSetting}
+          onChange={(e) => handleUpdate(e, "table_no")}
         />
       </FormLabel>
       <div className="flex justify-end">

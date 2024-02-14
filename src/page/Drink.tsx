@@ -15,7 +15,6 @@ function Drink() {
   const drinkData: ProductDataProps[] = (productData || []).filter(
     (product) => product.category === "drink",
   );
-  console.log(drinkData);
   if (error) {
     toast.error("Something when wrong");
     return <Error>Fetching Pizza data fail </Error>;

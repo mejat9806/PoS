@@ -8,7 +8,6 @@ import { FaAddressBook, FaPizzaSlice } from "react-icons/fa";
 import { MdLocalDrink } from "react-icons/md";
 import { LuSandwich } from "react-icons/lu";
 import { HiHomeModern } from "react-icons/hi2";
-import { GrUpdate } from "react-icons/gr";
 
 export type ProptypesNav = {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -27,7 +26,6 @@ const toItem: string[] = [
   "special",
   "drink",
   "order",
-  "update",
 ];
 const toOther: string[] = ["setting", "logout"];
 const toItemIcon: WithIcon[] = [
@@ -38,7 +36,6 @@ const toItemIcon: WithIcon[] = [
   { name: "special", icon: <LuSandwich /> },
   { name: "drink", icon: <MdLocalDrink /> },
   { name: "order", icon: <FaAddressBook /> },
-  { name: "update", icon: <GrUpdate /> },
 ];
 const toOtherIcon: WithIcon[] = [
   { name: "logout", icon: <RiLogoutCircleFill /> },

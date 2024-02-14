@@ -76,10 +76,29 @@ function Toggle({ id }: ToggleProps) {
     if (closestButton) {
       const rect = closestButton.getBoundingClientRect();
       const newRectPosition = {
-        x: window.innerWidth - rect.width - rect.x,
+        x: window.innerWidth - rect.width - rect.x - 130,
         y: rect.y + rect.height + 8,
       };
 
+      const distanceToBottom = window.innerHeight - rect.bottom;
+      console.log(
+        "fromBottom:",
+        distanceToBottom,
+        "innerheight",
+        window.innerHeight,
+        "recB:",
+        rect.bottom,
+        "recW",
+        rect.width,
+      );
+      const buffer = 150; // Adjust this value as needed
+      if (distanceToBottom < buffer) {
+        // Move the position up by the distance to the bottom plus some buffer
+        newRectPosition.y = Math.max(
+          0,
+          newRectPosition.y - (buffer - distanceToBottom),
+        );
+      }
       setRectPosition(newRectPosition);
 
       openId !== id ? open(id as number) : close();

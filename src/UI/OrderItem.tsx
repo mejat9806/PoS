@@ -18,7 +18,7 @@ function OrderItem({ data }: PropsType) {
   };
   const navigate = useNavigate();
   return (
-    <div className="flex">
+    <div className="flex ">
       <div
         onClick={() => navigate(`/order/${data.id}`)}
         className={`${getBackground(

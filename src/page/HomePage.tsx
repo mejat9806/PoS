@@ -1,7 +1,6 @@
 import { useBookings } from "../Customer/Bookings/useBooking";
-import CustomerList from "../Customer/CustomerList";
+import DashBoard from "../UI/DashBoard";
 import Error from "../UI/Error";
-import Order from "../UI/Order";
 import Spinner from "../UI/Spinner";
 
 function HomePage() {
@@ -12,14 +11,10 @@ function HomePage() {
   if (bookingError) {
     return <Error>Something goes wrong</Error>;
   }
+
   return (
-    <div className="grid  grid-cols-2 h-full">
-      <div>
-        <Order />
-      </div>
-      <div>
-        <CustomerList />
-      </div>
+    <div className="mx-10">
+      <DashBoard />
     </div>
   );
 }
