@@ -1,5 +1,6 @@
 import { PostgrestError } from "@supabase/supabase-js";
 import supabase, { supabaseUrl } from "../services/supabase";
+import { getToday } from "../utils/helper";
 export type ProductsTypes = {
   id: number;
   name: string;
@@ -114,6 +115,21 @@ export async function addNewProduct(newData: newDataType) {
       console.error(storageError);
       throw new Error("Error: Image couldn't be uploaded.");
     }
+  }
+  return data;
+}
+export async function getTodayOrder() {
+  const today = getToday(); // Get today's date
+  console.log(today); // Get
+  const { data, error } = await supabase
+    .from("orders")
+    .select("*")
+    .gte("created_at", `${today}T00:00:00.000Z`) // Greater than or equal to the start of today
+    .lt("created_at", `${today}T23:59:59.999Z`) // Less than the end of today
+    .order("created_at");
+
+  if (error instanceof Error) {
+    throw new Error(error.message);
   }
   return data;
 }

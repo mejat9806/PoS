@@ -1,12 +1,13 @@
 import supabase from "../services/supabase";
 
-type OrderDataType = {
+export type OrderType = {
   id: number;
   cart: [];
-  tableNo: number;
+  TableNo: number;
+  total_price: number;
 };
 
-export async function getOrderData(): Promise<OrderDataType[]> {
+export async function getOrderData(): Promise<OrderType[]> {
   const { data, error } = await supabase.from("orders").select("*");
   if (error) {
     throw new Error(error.message);

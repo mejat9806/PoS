@@ -42,19 +42,19 @@ function BBQ() {
   }
   return (
     <Menu>
-      <div className=" md:mx-0  sm:flex sm:flex-col ">
-        <h1 className="md:text-9xl text-3xl font-roboto font-extrabold uppercase mb-6  ">
+      <div className=" sm:flex  sm:flex-col md:mx-0 ">
+        <h1 className="mb-6 font-roboto text-3xl font-extrabold uppercase md:text-9xl  ">
           Barbeque
         </h1>
-        <div className="   lg:grid lg:grid-cols-2 gap-x-6">
+        <div className="   gap-x-6 lg:grid lg:grid-cols-2">
           <div className="mb-10">
-            <h1 className="font-semibold lg:text-6xl text-5xl font-menuTitle border-b-2 border-black/30 flex">
+            <h1 className="flex border-b-2 border-black/30 font-menuTitle text-5xl font-semibold lg:text-6xl">
               BEEF{" "}
-              <span className="text-yellow-400 rotate-[270deg]">
+              <span className="rotate-[270deg] text-yellow-400">
                 <MdOutlineSubdirectoryArrowLeft />
               </span>
             </h1>
-            <div className="grid grid-rows-2 w-full  md:px-6 gap-5 mt-5">
+            <div className="mt-5 grid w-full  grid-rows-2 gap-5 md:px-6">
               {BBQBeefitem.map((item) => (
                 <div className="odd:bg-slate-300/50  " key={item.id}>
                   <MenuItemCard item={item}></MenuItemCard>
@@ -64,13 +64,13 @@ function BBQ() {
           </div>
 
           <div className="mb-10">
-            <h1 className="font-semibold lg:text-6xl text-5xl font-menuTitle border-b-2 border-black/30 flex">
+            <h1 className="flex border-b-2 border-black/30 font-menuTitle text-5xl font-semibold lg:text-6xl">
               CHICKEN{" "}
-              <span className="text-yellow-400 rotate-[270deg]">
+              <span className="rotate-[270deg] text-yellow-400">
                 <MdOutlineSubdirectoryArrowLeft />
               </span>
             </h1>
-            <div className="grid grid-rows-2 w-full  md:px-6 gap-5 mt-5">
+            <div className="mt-5 grid w-full  grid-rows-2 gap-5 md:px-6">
               {BBQChickenitem.map((item) => (
                 <div className="odd:bg-slate-300/50  " key={item.id}>
                   <MenuItemCard item={item}></MenuItemCard>
@@ -80,13 +80,13 @@ function BBQ() {
           </div>
 
           <div className="mb-10">
-            <h1 className="font-semibold lg:text-6xl text-5xl  font-menuTitle border-b-2 border-black/30 flex">
+            <h1 className="flex border-b-2 border-black/30  font-menuTitle text-5xl font-semibold lg:text-6xl">
               FISH{" "}
-              <span className="text-yellow-400 rotate-[270deg]">
+              <span className="rotate-[270deg] text-yellow-400">
                 <MdOutlineSubdirectoryArrowLeft />
               </span>
             </h1>
-            <div className="grid grid-rows-2 w-full  md:px-6 gap-5 mt-5 mb-10">
+            <div className="mb-10 mt-5 grid  w-full grid-rows-2 gap-5 md:px-6">
               {FishChickenitem.map((item) => (
                 <div className="odd:bg-slate-300/50  " key={item.id}>
                   <MenuItemCard item={item}></MenuItemCard>

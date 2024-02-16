@@ -14,6 +14,7 @@ type FilterPropsType = {
 function Filter({ filterField, options }: FilterPropsType) {
   const [searchParams, setSearchParams] = useSearchParams();
   const currentFilter = searchParams.get(filterField) || options[0].value;
+  console.log(currentFilter);
   function handleClick(value: string) {
     searchParams.set(filterField, value);
     if (searchParams.get("page")) searchParams.set("page", "1");
@@ -21,9 +22,10 @@ function Filter({ filterField, options }: FilterPropsType) {
   }
   return (
     <div>
-      {options.map((options) => (
+      {options.map((options, i) => (
         <Button
           style="filterTab"
+          key={i}
           kindOfButton="filter"
           onClick={() => handleClick(options.value)}
           active={options.value === currentFilter}

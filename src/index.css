@@ -22,9 +22,12 @@
 
 @layer utilities {
   .navLink {
-    @apply font-bold text-4xl font-menu text-center;
+    @apply text-center font-menu text-4xl font-bold;
   }
   .navLinkIcon {
-    @apply font-bold text-4xl font-menu text-center;
+    @apply text-center font-menu text-4xl font-bold;
+  }
+  .tableStyle {
+    @apply items-center border border-t-0 p-4 text-center;
   }
 }

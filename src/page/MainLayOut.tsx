@@ -26,19 +26,19 @@ function MainLayOut() {
       <div
         className={`${
           openCart
-            ? "w-[600px] border-black/20 mb-4 backdrop-blur-2xl bg-yellow-300/50"
+            ? "mb-4 w-[600px] border-black/20 bg-yellow-300/50 backdrop-blur-2xl"
             : "w-16 "
-        } bg-yellow-300 h-screen fixed  right-0  transition-all duration-100 top-0 overflow-y-auto `}
+        } fixed right-0 top-0  h-screen  overflow-y-auto bg-yellow-300 transition-all duration-100 `}
       >
         {!openCart && (
           <button
             onClick={() => setOpenCart(true)}
-            className="text-3xl flex items-center justify-center mx-auto mt-4"
+            className="mx-auto mt-4 flex items-center justify-center text-3xl"
           >
             <div className="relative">
               <IoCartSharp />{" "}
               {carts.length ? (
-                <p className="bg-red-400 h-6 w-6 rounded-full text-center flex justify-center items-center text-white text-sm font-roboto font-bold absolute top-4 -right-4 drop-shadow-2xl">
+                <p className="absolute -right-4 top-4 flex h-6 w-6 items-center justify-center rounded-full bg-red-400 text-center font-roboto text-sm font-bold text-white drop-shadow-2xl">
                   !
                 </p>
               ) : (
@@ -50,11 +50,11 @@ function MainLayOut() {
 
         {openCart && <Cart setOpenCart={setOpenCart} openCart={openCart} />}
         <div
-          className="flex justify-center items-center fixed h-full "
+          className="fixed flex h-full items-center justify-center "
           onClick={() => setOpenCart(!openCart)}
         >
           {!openCart && (
-            <h1 className="rotate-90 font-roboto font-extrabold cursor-pointer h-14">
+            <h1 className="h-14 rotate-90 cursor-pointer font-roboto font-extrabold">
               CART
             </h1>
           )}

@@ -23,14 +23,14 @@ function Pizza() {
   return (
     <DropDownMenus>
       <div className="mb-24">
-        <h1 className="md:text-9xl text-5xl font-roboto font-extrabold uppercase mb-6  flex">
+        <h1 className="mb-6 flex font-roboto text-5xl font-extrabold uppercase  md:text-9xl">
           Pizza{" "}
-          <span className="text-yellow-400 rotate-[270deg]">
+          <span className="rotate-[270deg] text-yellow-400">
             <MdOutlineSubdirectoryArrowLeft />
           </span>
         </h1>
         <div className="flex justify-center ">
-          <div className="md:grid md:grid-cols-2 w-fit gap-9  flex flex-col">
+          <div className="flex w-fit flex-col gap-10  md:grid md:grid-cols-2">
             {pizzaData.map((pizza) => (
               <div className="" key={pizza.id}>
                 <MenuItemCard item={pizza} />

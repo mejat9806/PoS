@@ -13,7 +13,7 @@ function HomePage() {
   }
 
   return (
-    <div className="mx-10">
+    <div className="w-[70%]">
       <DashBoard />
     </div>
   );

@@ -1,11 +1,14 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import SideBar from "../UI/SideBar";
 
 function AppLayout() {
+  const location = useLocation();
   return (
     <div className=" flex h-full">
       <SideBar />
-      <div className=" ml-20 xl:w-full mt-4 w-screen ">
+      <div
+        className={`${location.pathname === "/" ? "flex justify-center " : ""} ml-20 mt-4 w-screen  xl:w-full`}
+      >
         <Outlet />
       </div>
     </div>

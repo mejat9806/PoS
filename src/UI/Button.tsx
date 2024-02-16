@@ -9,7 +9,7 @@ type ButtonProps = {
   type?: "submit" | "reset" | "button";
   icon?: React.ReactNode;
   sold_out?: boolean;
-  active: boolean;
+  active?: boolean;
   kindOfButton?: "filter" | "sorting";
 };
 

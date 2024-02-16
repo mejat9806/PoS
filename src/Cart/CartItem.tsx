@@ -6,7 +6,7 @@ import { formatCurrency } from "../utils/helper";
 import UpdateQuantity from "../UI/UpdateQuantity";
 import Button from "../UI/Button";
 
-type typeCartProps = {
+export type typeCartProps = {
   orderData: orderDataType;
 };
 function CartItem({ orderData }: typeCartProps) {
@@ -14,21 +14,21 @@ function CartItem({ orderData }: typeCartProps) {
   const currentQty = useSelector(getCurrentQuantityById(orderData.id));
 
   return (
-    <div className=" py-5 px-2 bg-white rounded-2xl mx-4 mt-3 shadow-2xl shadow-black/20">
-      <div className="grid grid-cols-cart mx-5">
-        <div className="flex justify-center items-center">
-          <h1 className="text-2xl font-roboto capitalize w-40 mr-2 text-start">
+    <div className=" mx-4 mt-3 rounded-2xl bg-white px-2 py-5 shadow-2xl shadow-black/20">
+      <div className="mx-5 grid grid-cols-cart">
+        <div className="flex items-center justify-center">
+          <h1 className="mr-2 w-40 text-start font-roboto text-2xl capitalize">
             {orderData.name}
           </h1>
         </div>
-        <div className=" flex justify-center items-center mr-2">
+        <div className=" mr-2 flex items-center justify-center">
           <UpdateQuantity id={orderData.id} currentQty={currentQty} />
         </div>
 
-        <div className=" flex justify-center items-center w-20 ">
+        <div className=" flex w-20 items-center justify-center ">
           <h1>{formatCurrency(orderData.totalPrice)}</h1>
         </div>
-        <div className=" flex justify-center items-center w-20 ">
+        <div className=" flex w-20 items-center justify-center ">
           <Button
             style="delete"
             onClick={() => dispatch(deleteItem(orderData.id))}

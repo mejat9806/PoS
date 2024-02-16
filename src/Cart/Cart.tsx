@@ -54,28 +54,28 @@ function Cart({ setOpenCart }: PropTypes) {
   const { creatingOrder } = useCreateOrder();
   if (isLoadingSetting || isUpdatingSetting || loadingOrderdata)
     return <Spinner />;
-  console.log(carts.length);
   const pricesAfterTax = settingData.tax_rate
     ? cartPrice * (settingData.tax_rate / 100)
     : 0;
+  const totalPrice = pricesAfterTax + cartPrice;
   const handleSendData = () => {
     if (typeof tableNo === "string")
       return toast.error("Please select table NUMBER");
-    const neworder = { cart: carts, TableNo: tableNo };
+    const neworder = { cart: carts, TableNo: tableNo, total_price: totalPrice };
     console.log(neworder);
     creatingOrder(neworder);
   };
   return (
-    <div className="h-screen flex flex-col align-bottom w-full">
+    <div className="flex h-screen w-full flex-col align-bottom">
       <div className="bg-black">
-        <div className="flex items-center space-x-3  p-2 bg-black">
+        <div className="flex items-center space-x-3  bg-black p-2">
           <button
             onClick={() => setOpenCart(false)}
-            className="text-3xl flex  justify-start ml-2  border-2 border-black p-2 rounded-sm text-yellow-400 hover:border-2 hover:border-yellow-400 hover:bg-white hover:text-black hover:rounded-md"
+            className="ml-2 flex  justify-start rounded-sm  border-2 border-black p-2 text-3xl text-yellow-400 hover:rounded-md hover:border-2 hover:border-yellow-400 hover:bg-white hover:text-black"
           >
             <FaArrowRightToBracket />
           </button>
-          <h1 className="text-3xl font-roboto text-white">Order Summary</h1>
+          <h1 className="font-roboto text-3xl text-white">Order Summary</h1>
         </div>
       </div>
       <div className=" flex-1 overflow-y-auto ">
@@ -97,9 +97,9 @@ function Cart({ setOpenCart }: PropTypes) {
         )}
       </div>
 
-      <div className="flex flex-col  text-yellow-300 text-lg uppercase font-semibold font-roboto w-full">
+      <div className="flex w-full  flex-col font-roboto text-lg font-semibold uppercase text-yellow-300">
         <div className="my-5 space-y-4  ">
-          <div className="  text-black p-6 rounded-3xl">
+          <div className="  rounded-3xl p-6 text-black">
             <div className="flex justify-between">
               <h3>cart price </h3>
               <span>{formatCurrency(cartPrice)}</span>
@@ -108,7 +108,7 @@ function Cart({ setOpenCart }: PropTypes) {
               <h2>service tax({settingData.tax_rate}%) </h2>
               <span>{formatCurrency(pricesAfterTax)}</span>
             </div>
-            <div className="text-2xl flex justify-between">
+            <div className="flex justify-between text-2xl">
               <h2>total cart </h2>
               <span className="font-extrabold">
                 {formatCurrency(pricesAfterTax + cartPrice)}

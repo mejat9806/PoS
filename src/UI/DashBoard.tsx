@@ -2,13 +2,13 @@ import { IoFastFoodOutline } from "react-icons/io5";
 import DashBoardSmallStuff from "./DashBoardSmallStuff";
 
 import { MdOutlinePeopleOutline } from "react-icons/md";
-import TodayActivity from "./TodayActivity";
+import TodayActivity from "../DashBoard/TodayActivity";
 import DashBoardFilter from "./DashBoardFilter";
 
 function DashBoard() {
   return (
     <div className="">
-      <div className=" spay my-10 flex justify-between">
+      <div className="  my-10 flex justify-between">
         <h1 className=" mb-10 font-roboto text-4xl font-bold">DashBoard</h1>
         <div className="flex gap-4">
           <DashBoardFilter />
@@ -28,7 +28,7 @@ function DashBoard() {
           bgColor="bg-blue-200"
         />
       </div>
-      <main className="my-5">
+      <main className="my-5 grid grid-cols-1">
         <TodayActivity />
       </main>
     </div>
