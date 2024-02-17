@@ -15,16 +15,16 @@ function DashBoardSmallStuff({
   sale?: number;
 }) {
   return (
-    <div className="flex w-fit items-center gap-x-2 bg-white p-3">
+    <div className="flex w-full items-center gap-x-2 bg-white p-3">
       <i className={`rounded-full  p-4 text-center ${bgColor}`}>{icon}</i>
-      <div className="font-roboto">
+      <div className="flex flex-col font-roboto">
         <h1 className="font-semibold text-gray-600">{name}</h1>
         {numOfOrder && (
-          <h2 className="text-center text-2xl font-semibold">{numOfOrder}</h2>
+          <h2 className="  font-semibold ">{numOfOrder ? numOfOrder : 0}</h2>
         )}
         {sale && (
-          <h2 className="text-center text-2xl font-semibold">
-            {formatCurrency(sale)}
+          <h2 className="  font-semibold ">
+            {formatCurrency(sale ? sale : 0)}
           </h2>
         )}
       </div>

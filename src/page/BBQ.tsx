@@ -40,6 +40,7 @@ function BBQ() {
   if (error) {
     toast.error("Fetching data error ");
   }
+
   return (
     <Menu>
       <div className=" sm:flex  sm:flex-col md:mx-0 ">

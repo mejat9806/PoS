@@ -11,7 +11,6 @@ import Side from "./page/Side";
 import PageNotFound from "./page/PageNotFound";
 import Order from "./page/Order";
 import OrderDetail from "./page/OrderDetail";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
 import SpecialMenu from "./page/SpecialMenu";
@@ -20,39 +19,30 @@ import Setting from "./page/Setting";
 import CreateOrder from "./page/CreateOrder";
 
 function App() {
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        staleTime: 0,
-      },
-    },
-  });
   return (
-    <QueryClientProvider client={queryClient}>
+    <BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />
-      <BrowserRouter>
-        <Suspense fallback={<Spinner />}>
-          <Routes>
-            <Route element={<AppLayout />}>
-              <Route index element={<HomePage />} />
-              <Route element={<MainLayOut />}>
-                <Route path="bbq" element={<BBQ />} />
-                <Route path="burger" element={<Burger />} />
-                <Route path="drink" element={<Drink />} />
-                <Route path="pizza" element={<Pizza />} />
-                <Route path="special" element={<SpecialMenu />} />
-                <Route path="side" element={<Side />} />
-              </Route>
-              <Route path="setting" element={<Setting />} />
-              <Route path="order" element={<Order />} />
-
-              <Route path="createorder" element={<CreateOrder />} />
-              <Route path="order/:id" element={<OrderDetail />} />
-              <Route path="*" element={<PageNotFound />} />
+      <Suspense fallback={<Spinner />}>
+        <Routes>
+          <Route element={<AppLayout />}>
+            <Route index element={<HomePage />} />
+            <Route element={<MainLayOut />}>
+              <Route path="bbq" element={<BBQ />} />
+              <Route path="burger" element={<Burger />} />
+              <Route path="drink" element={<Drink />} />
+              <Route path="pizza" element={<Pizza />} />
+              <Route path="special" element={<SpecialMenu />} />
+              <Route path="side" element={<Side />} />
             </Route>
-          </Routes>
-        </Suspense>
-      </BrowserRouter>
+            <Route path="setting" element={<Setting />} />
+            <Route path="order" element={<Order />} />
+
+            <Route path="createorder" element={<CreateOrder />} />
+            <Route path="order/:id" element={<OrderDetail />} />
+            <Route path="*" element={<PageNotFound />} />
+          </Route>
+        </Routes>
+      </Suspense>
       <Toaster
         toastOptions={{
           success: {
@@ -72,7 +62,7 @@ function App() {
           },
         }}
       />
-    </QueryClientProvider>
+    </BrowserRouter>
   );
 }
 

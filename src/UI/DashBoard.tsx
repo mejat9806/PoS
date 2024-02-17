@@ -4,8 +4,31 @@ import DashBoardSmallStuff from "./DashBoardSmallStuff";
 import { MdOutlinePeopleOutline } from "react-icons/md";
 import TodayActivity from "../DashBoard/TodayActivity";
 import DashBoardFilter from "./DashBoardFilter";
+import useRecentOrder from "../DashBoard/useRecentOrder";
+import Spinner from "./Spinner";
+import useTodayActivity from "../DashBoard/useTodayActivity";
 
 function DashBoard() {
+  const { dataBasedOnDate, isLoadingDate } = useRecentOrder();
+  const { isTodayActivity, todayActivity } = useTodayActivity();
+  console.log(todayActivity);
+  if (isTodayActivity || !todayActivity) return <Spinner />;
+  if (isLoadingDate) {
+    return <Spinner />;
+  }
+  const todayTotalSales = todayActivity.reduce(
+    (sum, item) => sum + item.total_price,
+    0,
+  );
+
+  const TodayOrderTotal = todayActivity?.length;
+  const orderTotal = dataBasedOnDate?.length;
+  const saleTotal = dataBasedOnDate?.reduce(
+    (sum, item) => sum + item.total_price,
+    0,
+  );
+  console.log(saleTotal);
+  console.log(dataBasedOnDate, orderTotal);
   return (
     <div className="">
       <div className="  my-10 flex justify-between">
@@ -18,18 +41,18 @@ function DashBoard() {
         <DashBoardSmallStuff
           name="Order"
           icon=<IoFastFoodOutline size={40} />
-          numOfOrder={1}
+          numOfOrder={orderTotal || TodayOrderTotal}
           bgColor="bg-teal-200"
         />
         <DashBoardSmallStuff
           name="Sales"
           icon=<MdOutlinePeopleOutline size={40} />
-          sale={40000}
+          sale={saleTotal || todayTotalSales}
           bgColor="bg-blue-200"
         />
       </div>
       <main className="my-5 grid grid-cols-1">
-        <TodayActivity />
+        <TodayActivity todayActivity={todayActivity} />
       </main>
     </div>
   );

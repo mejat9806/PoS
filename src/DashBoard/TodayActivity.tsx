@@ -1,24 +1,24 @@
-import { OrderType } from "../Orders/getOrder";
 import Menu from "../UI/Menus";
-import Spinner from "../UI/Spinner";
 import Table from "../UI/Table";
 import TodayActivityItem from "../UI/TodayActivityItem";
-import useTodayActivity from "./useTodayActivity";
 
 export type TodayActivityProps = {
-  activity: OrderType;
+  id: number;
+  TableNo: number;
+  cart: unknown[];
+  total_price: number;
 };
-
-function TodayActivity() {
-  const { isTodayActivity, todayActivity } = useTodayActivity();
+type activityProps = {
+  todayActivity: TodayActivityProps[];
+};
+function TodayActivity({ todayActivity }: activityProps) {
   console.log(todayActivity);
-  if (isTodayActivity || !todayActivity) return <Spinner />;
   return (
     <div className="h-fit bg-white p-5">
       <h1 className="font-roboto text-2xl font-extrabold">Today Activity</h1>
       <div>
         <Menu>
-          <Table columns="todayActivity">
+          <Table columns={"grid grid-cols-todayActivity"}>
             <Table.Header>
               <div className=""> order ID</div>
               <div>Table Number</div>

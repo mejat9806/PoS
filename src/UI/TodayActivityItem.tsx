@@ -1,7 +1,8 @@
 import { TodayActivityProps } from "../DashBoard/TodayActivity";
 import Table from "./Table";
 
-function TodayActivityItem({ activity }: TodayActivityProps) {
+type activityItemProps = { activity: TodayActivityProps };
+function TodayActivityItem({ activity }: activityItemProps) {
   return (
     <Table.Row>
       <div className="tableStyle flex items-center justify-center">
@@ -10,7 +11,7 @@ function TodayActivityItem({ activity }: TodayActivityProps) {
       <div className="tableStyle flex items-center justify-center">
         {activity.TableNo}
       </div>
-      <div className="tableStyle">
+      <div className=" font-roboto">
         {(
           activity.cart as { name: string; quantity: number; id: number }[]
         ).map((item) => (

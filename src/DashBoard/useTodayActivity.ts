@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getTodayOrder } from "../MenuData/GetMenuData";
+import { getTodayOrder } from "../Orders/getOrder";
 
 function useTodayActivity() {
   const {
