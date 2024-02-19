@@ -32,6 +32,9 @@ const buttonStyles: ButtonStyles = {
   threeDots: "px-0  py-4 rounded-full hover:bg-gray-100",
   error: `${normalButton} text-4xl`,
   filterTab: `text-md px-2 py-1  border-2  border-gray-300 rounded-md bg-white font-roboto font-bold whitespace-nowrap uppercase hover:bg-yellow-300 hover:border-black hover:text-black h-fit `,
+  pagination: `flex items-center disabled:bg-red-400 rounded-full text-xl p-1 bg-yellow-400 hover:scale-110 transition-all duration-150 disabled:cursor-not-allowed`,
+  paginationButton: `flex items-center disabled:bg-red-400 rounded-full text-xl py-1 px-2 bg-yellow-100 hover:scale-110 transition-all duration-150 disabled:cursor-not-allowed `,
+  activePagination: ` items-center disabled:bg-red-400 rounded-full text-xl py-1 px-2  bg-yellow-400 hover:scale-110 transition-all duration-150 disabled:cursor-not-allowed `,
 };
 
 function Button({

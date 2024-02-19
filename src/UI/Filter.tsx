@@ -14,7 +14,6 @@ type FilterPropsType = {
 function Filter({ filterField, options }: FilterPropsType) {
   const [searchParams, setSearchParams] = useSearchParams();
   const currentFilter = searchParams.get(filterField) || options[0].value;
-  console.log(currentFilter);
   function handleClick(value: string) {
     searchParams.set(filterField, value);
     if (searchParams.get("page")) searchParams.set("page", "1");

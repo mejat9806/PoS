@@ -20,7 +20,7 @@ function Header({ children }: { children: React.ReactNode }) {
 
   return (
     <div
-      className={`${columns}  items-center bg-slate-200 py-4 text-center text-sm font-semibold uppercase tracking-wider`}
+      className={`${columns} items-center bg-slate-200 py-4 text-center text-sm font-semibold uppercase `}
     >
       {children}
     </div>

@@ -7,52 +7,57 @@ import DashBoardFilter from "./DashBoardFilter";
 import useRecentOrder from "../DashBoard/useRecentOrder";
 import Spinner from "./Spinner";
 import useTodayActivity from "../DashBoard/useTodayActivity";
+import Pagination from "./Pagination";
+import useTodayActivityWidget from "../DashBoard/useTodayActivityWidget";
 
 function DashBoard() {
   const { dataBasedOnDate, isLoadingDate } = useRecentOrder();
-  const { isTodayActivity, todayActivity } = useTodayActivity();
-  console.log(todayActivity);
-  if (isTodayActivity || !todayActivity) return <Spinner />;
-  if (isLoadingDate) {
+  const { isTodayActivity, todayActivity, countValue } = useTodayActivity();
+  const { TodayOrderforWidget, isTodayActivityWidget } =
+    useTodayActivityWidget();
+
+  if (
+    isTodayActivity ||
+    !todayActivity ||
+    isLoadingDate ||
+    isTodayActivityWidget
+  )
     return <Spinner />;
-  }
-  const todayTotalSales = todayActivity.reduce(
+  const todayTotalSales = TodayOrderforWidget?.reduce(
     (sum, item) => sum + item.total_price,
     0,
   );
-
-  const TodayOrderTotal = todayActivity?.length;
+  const TodayOrderTotal = TodayOrderforWidget?.length;
   const orderTotal = dataBasedOnDate?.length;
   const saleTotal = dataBasedOnDate?.reduce(
     (sum, item) => sum + item.total_price,
     0,
   );
-  console.log(saleTotal);
-  console.log(dataBasedOnDate, orderTotal);
   return (
     <div className="">
-      <div className="  my-10 flex justify-between">
+      <div className="  flex w-full flex-col justify-between sm:my-10 sm:flex-row">
         <h1 className=" mb-10 font-roboto text-4xl font-bold">DashBoard</h1>
-        <div className="flex gap-4">
+        <div className="flex gap-4 ">
           <DashBoardFilter />
         </div>
       </div>
-      <div className="flex gap-5">
+      <div className="flex flex-col gap-5 sm:flex-row">
         <DashBoardSmallStuff
           name="Order"
-          icon=<IoFastFoodOutline size={40} />
+          icon={<IoFastFoodOutline size={40} />}
           numOfOrder={orderTotal || TodayOrderTotal}
           bgColor="bg-teal-200"
         />
         <DashBoardSmallStuff
           name="Sales"
-          icon=<MdOutlinePeopleOutline size={40} />
+          icon={<MdOutlinePeopleOutline size={40} />}
           sale={saleTotal || todayTotalSales}
           bgColor="bg-blue-200"
         />
       </div>
       <main className="my-5 grid grid-cols-1">
         <TodayActivity todayActivity={todayActivity} />
+        <Pagination countValue={countValue} />
       </main>
     </div>
   );

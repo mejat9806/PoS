@@ -6,6 +6,7 @@ export const formatCurrency = (value: number) =>
 export const getToday = function () {
   const today = new Date();
   // Set time to the start or end of the day based on options
+  today.setDate(today.getDate());
 
   // Return only the date part in ISO format
   return today.toISOString().split("T")[0];

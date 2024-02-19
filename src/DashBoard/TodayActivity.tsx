@@ -12,18 +12,18 @@ type activityProps = {
   todayActivity: TodayActivityProps[];
 };
 function TodayActivity({ todayActivity }: activityProps) {
-  console.log(todayActivity);
   return (
-    <div className="h-fit bg-white p-5">
+    <div className="h-fit bg-white sm:p-5 ">
       <h1 className="font-roboto text-2xl font-extrabold">Today Activity</h1>
       <div>
         <Menu>
           <Table columns={"grid grid-cols-todayActivity"}>
             <Table.Header>
-              <div className=""> order ID</div>
-              <div>Table Number</div>
-              <div>Order</div>
-              <div>Price</div>
+              <div className="tableHeader "> order ID</div>
+              <div className="tableHeader ">Table</div>
+              <div className="tableHeader">Order</div>
+              <div className="tableHeader">Price</div>
+              <div></div>
             </Table.Header>
             <Table.Body
               data={todayActivity}

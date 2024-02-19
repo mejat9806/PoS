@@ -1,4 +1,5 @@
 import supabase from "../services/supabase";
+import { PAGE_SIZE } from "../utils/constants";
 import { getToday } from "../utils/helper";
 
 export type OrderType = {
@@ -15,14 +16,42 @@ export async function getOrderData(): Promise<OrderType[]> {
   }
   return data;
 }
-export async function getTodayOrder() {
+export async function getTodayOrder({ page }: { page: number }) {
   const today = getToday(); // Get today's date
-  console.log(today); // Get
+  console.log(today);
+  const startDate = `${today}T00:00:00.000Z`; // Start at 8:00 AM MYT
+  const endDate = `${today}T14:00:00.000Z`; // End at 10:00 PM MYT
+  let query = supabase
+    .from("orders")
+    .select("*", { count: "exact" })
+    .gte("created_at", startDate)
+    .lte("created_at", endDate)
+    .order("created_at");
+
+  if (page) {
+    const from = (page - 1) * PAGE_SIZE;
+    const to = from + PAGE_SIZE - 1;
+    query = query.range(from, to);
+  }
+  const { data, error, count } = await query;
+
+  if (error instanceof Error) {
+    throw new Error(error.message);
+  }
+  const countValue = count !== null ? count : 0;
+
+  return { data, countValue };
+}
+export async function getTodayOrderforWidget() {
+  const today = getToday(); // Get today's date
+  console.log(today);
+  const startDate = `${today}T00:00:00.000Z`; // Start at 8:00 AM MYT
+  const endDate = `${today}T14:00:00.000Z`; // End at 10:00 PM MYT
   const { data, error } = await supabase
     .from("orders")
     .select("*")
-    .gte("created_at", `${today}T00:00:00.000Z`) // Greater than or equal to the start of today
-    .lt("created_at", `${today}T23:59:59.999Z`) // Less than the end of today
+    .gte("created_at", startDate)
+    .lt("created_at", endDate)
     .order("created_at");
 
   if (error instanceof Error) {

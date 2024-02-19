@@ -9,10 +9,12 @@ function DashBoardSmallStuff({
   sale,
 }: {
   name: string;
-  icon?: ReactNode;
+  icon: ReactNode;
   numOfOrder?: number;
   bgColor: string;
   sale?: number;
+  todayTotalSales?: number;
+  TodayOrderTotal?: number;
 }) {
   return (
     <div className="flex w-full items-center gap-x-2 bg-white p-3">
@@ -31,5 +33,4 @@ function DashBoardSmallStuff({
     </div>
   );
 }
-
 export default DashBoardSmallStuff;
