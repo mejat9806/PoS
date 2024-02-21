@@ -2,10 +2,10 @@ import { useSearchParams } from "react-router-dom";
 import { PAGE_SIZE } from "../utils/constants";
 //import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
 import Button from "./Button";
+//import { useRef } from "react";
 
 interface PaginationProps {
-  countValue: number; // Allow count to be null
-  pageCount: number;
+  countValue: number | undefined; // Allow count to be null
 }
 
 function Pagination({ countValue = 0 }: PaginationProps) {
@@ -46,8 +46,19 @@ function Pagination({ countValue = 0 }: PaginationProps) {
     seachParams.set("page", pageButton.toString());
     setSearchParams(seachParams);
   }
+  /*  const dialogRef = useRef<HTMLDialogElement>(null);
+   function togleDialong() {
+    if (!dialogRef.current) return;
+    dialogRef.current.hasAttribute("open")
+      ? dialogRef.current.close()
+      : dialogRef.current.showModal();
+  } */
   return (
     <div className="mt-5 flex flex-col">
+      {/* <button onClick={togleDialong}>Test</button>
+      <dialog ref={dialogRef}>
+        <BBQ />
+      </dialog> */}
       <div className="flex justify-center">
         {/*  <Button
           onClick={handlePrevPage}

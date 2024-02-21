@@ -11,7 +11,6 @@ import { formatCurrency } from "../utils/helper";
 import Button from "../UI/Button";
 import TableNumber from "../UI/TableNumber";
 import { useState } from "react";
-import { getOrderData } from "../Orders/getOrder";
 import { useOrderData } from "../Orders/useOrderData";
 import toast from "react-hot-toast";
 import EmptyCart from "../UI/EmptyCart";
@@ -19,6 +18,7 @@ import EmptyCart from "../UI/EmptyCart";
 type PropTypes = {
   openCart: boolean;
   setOpenCart: React.Dispatch<React.SetStateAction<boolean>>;
+  toggleDialog?: () => void | undefined;
 };
 
 export type orderDataType = {
@@ -43,7 +43,8 @@ orderData.forEach((item) => {
   item.totalPrice = item.qty * item.price;
 }); */
 
-function Cart({ setOpenCart }: PropTypes) {
+function Cart({ setOpenCart, toggleDialog }: PropTypes) {
+  console.log(toggleDialog);
   const [tableNo, setTableNo] = useState<string | number>("select table");
   const { isLoadingSetting, settingData } = useSettings();
   const { isUpdatingSetting } = useUpdateSetting();
@@ -64,18 +65,25 @@ function Cart({ setOpenCart }: PropTypes) {
     const neworder = { cart: carts, TableNo: tableNo, total_price: totalPrice };
     console.log(neworder);
     creatingOrder(neworder);
+    toggleDialog?.();
+    setTableNo("select table");
   };
   return (
-    <div className="flex h-screen w-full flex-col align-bottom">
+    <div className="flex w-full  flex-col align-bottom sm:h-screen sm:w-full">
       <div className="bg-black">
         <div className="flex items-center space-x-3  bg-black p-2">
           <button
-            onClick={() => setOpenCart(false)}
+            onClick={() => {
+              setOpenCart(false);
+              toggleDialog?.();
+            }}
             className="ml-2 flex  justify-start rounded-sm  border-2 border-black p-2 text-3xl text-yellow-400 hover:rounded-md hover:border-2 hover:border-yellow-400 hover:bg-white hover:text-black"
           >
             <FaArrowRightToBracket />
           </button>
-          <h1 className="font-roboto text-3xl text-white">Order Summary</h1>
+          <h1 className="font-roboto text-lg text-white sm:text-3xl">
+            Order Summary
+          </h1>
         </div>
       </div>
       <div className=" flex-1 overflow-y-auto ">
@@ -97,7 +105,7 @@ function Cart({ setOpenCart }: PropTypes) {
         )}
       </div>
 
-      <div className="flex w-full  flex-col font-roboto text-lg font-semibold uppercase text-yellow-300">
+      <div className="flex w-full  flex-col font-roboto text-sm font-semibold uppercase text-yellow-300 sm:text-lg">
         <div className="my-5 space-y-4  ">
           <div className="  rounded-3xl p-6 text-black">
             <div className="flex justify-between">
@@ -108,7 +116,7 @@ function Cart({ setOpenCart }: PropTypes) {
               <h2>service tax({settingData.tax_rate}%) </h2>
               <span>{formatCurrency(pricesAfterTax)}</span>
             </div>
-            <div className="flex justify-between text-2xl">
+            <div className="flex justify-between  sm:text-2xl">
               <h2>total cart </h2>
               <span className="font-extrabold">
                 {formatCurrency(pricesAfterTax + cartPrice)}

@@ -25,7 +25,7 @@ const buttonStyles: ButtonStyles = {
   soldOut: `bg-red-300  ${normalButton} transition-all duration-150 md:w-[100]`,
   dropMenuBtn: `bg-slate-50  hover:text-yellow-400 font-roboto font-bold transition-all duration-150  border-2 ${normalButton} hover:bg-black w-full `,
   addCartMain: `bg-green-300 text-black hover:bg-green-600 hover:text-yellow-400 ${normalButton} transition-all duration-150 w-full mx-5  disabled:bg-gray-700/40 disabled:cursor-not-allowed disabled:hover:text-gray-800`,
-  circle: `rounded-3xl bg-teal-300 px-4 py-2 disabled:bg-gray-700/40 disabled:cursor-not-allowed    font-extrabold text-xl `,
+  circle: `rounded-3xl bg-teal-300 sm:px-4 px-3 py-1 sm:py-2 disabled:bg-gray-700/40 disabled:cursor-not-allowed    font-extrabold text-xl `,
   delete: `rounded-full bg-red-500 px-4  disabled:bg-gray-700/40 disabled:cursor-not-allowed font-extrabold text-sm h-10`,
   deleteItemButton: ` rounded-md bg-red-300 px-4  ${normalButton} hover:text-red-600 hover:bg-black`,
   normal: `${normalButton} bg-yellow-300 rounded-md hover:bg-black hover:text-yellow-300 transition-all duration-150`,

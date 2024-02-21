@@ -19,11 +19,10 @@ function TodayActivity({ todayActivity }: activityProps) {
         <Menu>
           <Table columns={"grid grid-cols-todayActivity"}>
             <Table.Header>
-              <div className="tableHeader "> order ID</div>
+              <div className="tableHeader ">ID</div>
               <div className="tableHeader ">Table</div>
               <div className="tableHeader">Order</div>
               <div className="tableHeader">Price</div>
-              <div></div>
             </Table.Header>
             <Table.Body
               data={todayActivity}

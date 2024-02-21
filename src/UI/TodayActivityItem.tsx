@@ -1,4 +1,5 @@
 import { TodayActivityProps } from "../DashBoard/TodayActivity";
+import { formatCurrency } from "../utils/helper";
 import Table from "./Table";
 
 type activityItemProps = { activity: TodayActivityProps };
@@ -11,7 +12,7 @@ function TodayActivityItem({ activity }: activityItemProps) {
       <div className="tableStyle flex items-center justify-center text-sm">
         {activity.TableNo}
       </div>
-      <div className="">
+      <div className="text-center">
         {(
           activity.cart as { name: string; quantity: number; id: number }[]
         ).map((item) => (
@@ -22,9 +23,8 @@ function TodayActivityItem({ activity }: activityItemProps) {
         ))}
       </div>
       <div className="tableStyle flex items-center justify-center text-sm">
-        {activity.total_price}
+        {formatCurrency(activity.total_price)}
       </div>
-      <div></div>
     </Table.Row>
   );
 }

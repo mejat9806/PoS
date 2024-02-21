@@ -4,7 +4,7 @@ import { IoIosSettings } from "react-icons/io";
 import Icon from "./Icon";
 import { RiLogoutCircleFill } from "react-icons/ri";
 import { GiFrenchFries, GiMeat } from "react-icons/gi";
-import { FaAddressBook, FaPizzaSlice } from "react-icons/fa";
+import { FaAddressBook, FaHamburger, FaPizzaSlice } from "react-icons/fa";
 import { MdLocalDrink } from "react-icons/md";
 import { LuSandwich } from "react-icons/lu";
 import { HiHomeModern } from "react-icons/hi2";
@@ -32,6 +32,7 @@ const toItemIcon: WithIcon[] = [
   { name: "/", icon: <HiHomeModern /> },
   { name: "bbq", icon: <GiMeat /> },
   { name: "pizza", icon: <FaPizzaSlice /> },
+  { name: "burger", icon: <FaHamburger /> },
   { name: "side", icon: <GiFrenchFries /> },
   { name: "special", icon: <LuSandwich /> },
   { name: "drink", icon: <MdLocalDrink /> },
@@ -49,7 +50,7 @@ function Nav({ setOpen, open }: ProptypesNav) {
 
   return (
     <div>
-      <div className="h-screen flex flex-col justify-between ">
+      <div className="flex h-screen flex-col justify-between ">
         {open ? (
           <>
             <div className="flex flex-col space-y-4 ">
@@ -57,7 +58,7 @@ function Nav({ setOpen, open }: ProptypesNav) {
 
               {toItem.map((navItem, i) => (
                 <div className="flex flex-col " key={i}>
-                  <div className={`flex justify-center flex-col  gap-2 `}>
+                  <div className={`flex flex-col justify-center  gap-2 `}>
                     <NavLink
                       key={i}
                       to={navItem}
@@ -73,10 +74,10 @@ function Nav({ setOpen, open }: ProptypesNav) {
               ))}
             </div>
 
-            <div className="flex flex-col space-y-4 mb-10">
+            <div className="mb-10 flex flex-col space-y-4">
               {toOther.map((other, i) => (
                 <div className="flex flex-col " key={i}>
-                  <div className={`flex justify-center flex-col  gap-2 `}>
+                  <div className={`flex flex-col justify-center  gap-2 `}>
                     <NavLink
                       to={other}
                       className={({ isActive }) =>
@@ -98,14 +99,14 @@ function Nav({ setOpen, open }: ProptypesNav) {
               {toItemIcon.map((navItem, i) => (
                 <div className="flex flex-col " key={i}>
                   <div
-                    className={`flex justify-center flex-col  gap-2 items-center `}
+                    className={`flex flex-col items-center  justify-center gap-2 `}
                   >
                     <NavLink
                       to={navItem.name}
                       className={({ isActive }) =>
                         `${
                           isActive
-                            ? "bg-white text-black rounded-l-full w-full text-center pl-3 "
+                            ? "w-full rounded-l-full bg-white pl-3 text-center text-black "
                             : ""
                         } navLinkIcon p-1`
                       }
@@ -118,16 +119,16 @@ function Nav({ setOpen, open }: ProptypesNav) {
               ))}
             </div>
 
-            <div className="flex flex-col space-y-4 items-center mb-10">
+            <div className="mb-10 flex flex-col items-center space-y-4">
               {toOtherIcon.map((tootherIcon, i) => (
                 <div className="flex flex-col " key={i}>
-                  <div className={`flex justify-center flex-col  gap-2 `}>
+                  <div className={`flex flex-col justify-center  gap-2 `}>
                     <NavLink
                       to={tootherIcon.name}
                       className={({ isActive }) =>
                         `${
                           isActive
-                            ? "bg-black text-yellow-400 rounded-full "
+                            ? "rounded-full bg-black text-yellow-400 "
                             : ""
                         } navLinkIcon p-1 `
                       }

@@ -63,42 +63,51 @@ function Toggle({ id }: ToggleProps) {
         document.removeEventListener("wheel", handleScroll);
       }
     }
+    function handleResize() {
+      if (openId) {
+        close();
+      }
+    }
     if (openId) document.addEventListener("wheel", handleScroll);
-    return () => document.removeEventListener("wheel", handleScroll);
+    if (openId) window.addEventListener("resize", handleResize);
+    return () => {
+      document.removeEventListener("wheel", handleScroll),
+        window.removeEventListener("resize", handleScroll);
+    };
   }, [close, openId]);
 
   function handleClick(e: React.MouseEvent<HTMLButtonElement>) {
     e.stopPropagation();
     const targetButton = e.target as HTMLElement;
-
     const closestButton = targetButton.closest("button");
 
     if (closestButton) {
       const rect = closestButton.getBoundingClientRect();
       const newRectPosition = {
         x: window.innerWidth - rect.width - rect.x - 130,
-        y: rect.y + rect.height + 8,
+        y: rect.y + rect.height,
       };
 
       const distanceToBottom = window.innerHeight - rect.bottom;
-      console.log(
-        "fromBottom:",
-        distanceToBottom,
-        "innerheight",
-        window.innerHeight,
-        "recB:",
-        rect.bottom,
-        "recW",
-        rect.width,
-      );
-      const buffer = 150; // Adjust this value as needed
+      const distanceToRight = window.innerWidth - rect.right;
+      const buffer = 200; // Adjust this value as needed
+
+      // Move the position up if it's too close to the bottom
       if (distanceToBottom < buffer) {
-        // Move the position up by the distance to the bottom plus some buffer
         newRectPosition.y = Math.max(
           0,
           newRectPosition.y - (buffer - distanceToBottom),
         );
       }
+
+      // Move the position to the left if it's too close to the right
+      if (distanceToRight < buffer) {
+        newRectPosition.x = Math.max(
+          0,
+          newRectPosition.x - (buffer - distanceToRight),
+        );
+      }
+
       setRectPosition(newRectPosition);
 
       openId !== id ? open(id as number) : close();

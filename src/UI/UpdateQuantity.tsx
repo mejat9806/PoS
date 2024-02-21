@@ -16,7 +16,7 @@ function UpdateQuantity({ currentQty, id }: updateQuantityProps) {
   }
   const { order_qty } = settingData;
   return (
-    <div className="flex justify-center items-center gap-5  ">
+    <div className="flex items-center justify-center gap-3  sm:gap-5">
       <Button style="circle" onchange={() => dispatch(decreaseQty(id))}>
         -
       </Button>

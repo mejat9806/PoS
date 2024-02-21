@@ -26,24 +26,24 @@ function SpecialMenu() {
   }
   return (
     <DropDownMenus>
-      <div className="transition-all duration-150">
-        <h1 className="md:text-9xl text-5xl font-roboto font-extrabold uppercase mb-6  flex">
+      <div className="transition-all duration-150 ">
+        <h1 className="mb-6 flex font-roboto text-5xl font-extrabold uppercase md:text-6xl lg:text-9xl">
           Special{" "}
-          <span className="text-yellow-400 rotate-[270deg]">
+          <span className="rotate-[270deg] text-yellow-400">
             <MdOutlineSubdirectoryArrowLeft />
           </span>
         </h1>
 
-        <div className="grid md:grid-cols-2 gap-x-6 grid-cols-1">
+        <div className=" grid justify-center gap-10 ">
           <div>
-            <h1 className="font-semibold lg:text-6xl text-5xl font-menuTitle border-b-2 border-black/30  mx-auto flex">
+            <h1 className="mx-auto flex border-b-2 border-black/30 font-menuTitle text-5xl  font-semibold lg:text-6xl">
               Sandwich{" "}
-              <span className="text-yellow-400 rotate-[270deg]">
+              <span className="rotate-[270deg] text-yellow-400">
                 <MdOutlineSubdirectoryArrowLeft />
               </span>
             </h1>{" "}
             <div className="flex justify-center ">
-              <div className="md:grid lg:grid-cols-2 md:grid-cols-1 gap-9  flex flex-col mt-5 w-fit">
+              <div className="mt-5 flex w-fit flex-col  gap-9 md:grid md:grid-cols-1 lg:grid-cols-2">
                 {specialSandData.map((specialsand) => (
                   <MenuItemCard item={specialsand} key={specialsand.id} />
                 ))}
@@ -51,14 +51,14 @@ function SpecialMenu() {
             </div>
           </div>
           <div>
-            <h1 className="font-semibold lg:text-6xl text-5xl font-menuTitle border-b-2 border-black/30  mx-auto flex">
+            <h1 className="mx-auto flex border-b-2 border-black/30 font-menuTitle text-5xl  font-semibold lg:text-6xl">
               Beef Plater{" "}
-              <span className="text-yellow-400 rotate-[270deg]">
+              <span className="rotate-[270deg] text-yellow-400">
                 <MdOutlineSubdirectoryArrowLeft />
               </span>
             </h1>{" "}
-            <div className="flex justify-center ">
-              <div className="md:grid md:grid-cols-1 lg:grid-cols-2 w-full gap-9  flex flex-col mt-5">
+            <div className="mb-24 flex justify-center">
+              <div className="mt-5 flex w-full flex-col gap-9  md:grid md:grid-cols-1 lg:grid-cols-2">
                 {specialData.map((special) => (
                   <MenuItemCard item={special} key={special.id} />
                 ))}

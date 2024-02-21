@@ -7,6 +7,7 @@ export type OrderType = {
   cart: [];
   TableNo: number;
   total_price: number;
+  category: string;
 };
 
 export async function getOrderData(): Promise<OrderType[]> {

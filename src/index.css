@@ -31,6 +31,6 @@
     @apply items-center border border-t-0 p-4 text-center;
   }
   .tableHeader {
-    @apply text-[0.8rem] sm:text-[1.05rem];
+    @apply text-[0.8rem];
   }
 }

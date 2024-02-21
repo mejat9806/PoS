@@ -4,10 +4,10 @@ import SideBar from "../UI/SideBar";
 function AppLayout() {
   const location = useLocation();
   return (
-    <div className=" flex h-full w-full">
+    <div className=" flex h-svh ">
       <SideBar />
       <div
-        className={`${location.pathname === "/" ? "flex justify-center " : ""} ml-20 mt-4 w-screen  xl:w-full`}
+        className={`${location.pathname === "/" ? "flex justify-center " : ""} ml-20 mt-4 w-svw `}
       >
         <Outlet />
       </div>

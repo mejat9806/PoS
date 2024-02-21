@@ -34,6 +34,7 @@ function MenuItemCard({ item }: PropType) {
       name: name,
       quantity: 1,
       price: price,
+      category: category,
       totalPrice: price * 1,
     };
     dispatch(addItem(newItem));
@@ -41,7 +42,7 @@ function MenuItemCard({ item }: PropType) {
 
   return (
     <div
-      className={`flex  h-full justify-between   ${
+      className={`flex  h-full w-full  justify-between ${
         !hasNoImage ? "flex-col" : ""
       }  rounded-md border-2 border-transparent bg-slate-200/20 px-2 py-2 hover:border-2 hover:border-black/20 md:px-5 ${
         sold_out ? "bg-slate-300 hover:bg-red-100" : " hover:bg-yellow-100"

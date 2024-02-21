@@ -14,14 +14,14 @@ function CartItem({ orderData }: typeCartProps) {
   const currentQty = useSelector(getCurrentQuantityById(orderData.id));
 
   return (
-    <div className=" mx-4 mt-3 rounded-2xl bg-white px-2 py-5 shadow-2xl shadow-black/20">
-      <div className="mx-5 grid grid-cols-cart">
-        <div className="flex items-center justify-center">
-          <h1 className="mr-2 w-40 text-start font-roboto text-2xl capitalize">
+    <div className=" mx-4 mt-3 rounded-2xl bg-white shadow-2xl shadow-black/20 sm:px-2 sm:py-5">
+      <div className="grid grid-cols-cart sm:mx-5">
+        <div className="flex items-center sm:justify-center">
+          <h1 className=" font-roboto  capitalize sm:mr-2 sm:w-40 sm:text-center sm:text-2xl">
             {orderData.name}
           </h1>
         </div>
-        <div className=" mr-2 flex items-center justify-center">
+        <div className=" flex items-center justify-center sm:mr-2">
           <UpdateQuantity id={orderData.id} currentQty={currentQty} />
         </div>
 
