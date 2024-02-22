@@ -1,7 +1,7 @@
 /* export async function getBookings() {
   const { data: bookings, error } = await supabase.from("bookings").select("*");
   if (error) {
-    console.log(error);
+   console.log()
     throw new Error("error fetching booking");
   }
   return bookings;

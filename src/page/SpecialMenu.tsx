@@ -9,7 +9,7 @@ import { MdOutlineSubdirectoryArrowLeft } from "react-icons/md";
 
 function SpecialMenu() {
   const { error, isLoading, productData } = useData();
-  console.log(productData);
+  console.log();
   if (isLoading) {
     return <Spinner />;
   }
@@ -19,7 +19,7 @@ function SpecialMenu() {
   const specialData: ProductDataProps[] = (productData || []).filter(
     (product) => product.category === "special_beef",
   );
-  console.log(specialData);
+  console.log();
   if (error) {
     toast.error("Something when wrong");
     return <Error>Fetching Pizza data fail </Error>;

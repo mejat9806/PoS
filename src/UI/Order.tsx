@@ -34,12 +34,12 @@ function Order() {
     });
   });
 
-  console.log(itemQuantities);
+  console.log();
 
   // Output the quantity of each item sold
-  console.log("here", itemQuantities);
+  console.log();
 
-  return <div className="flex space-x-5 border-2 border-transparent bg "></div>;
+  return <div className="bg flex space-x-5 border-2 border-transparent "></div>;
 }
 
 export default Order;

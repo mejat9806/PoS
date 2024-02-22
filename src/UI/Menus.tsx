@@ -78,20 +78,23 @@ function Toggle({ id }: ToggleProps) {
 
   function handleClick(e: React.MouseEvent<HTMLButtonElement>) {
     e.stopPropagation();
-    const targetButton = e.target as HTMLElement;
-    const closestButton = targetButton.closest("button");
+    const targetButton = e.target as HTMLElement; //this will select the button
+    const closestButton = targetButton.closest("button"); //this will select the button close to our target
 
     if (closestButton) {
-      const rect = closestButton.getBoundingClientRect();
+      const rect = closestButton.getBoundingClientRect(); //Return the size of the closestButton element  and its position relative to the viewport:
+      //The getBoundingClientRect() method returns a DOMRect object with eight properties: left, top, right, bottom, x, y, width, height.
+
       const newRectPosition = {
-        x: window.innerWidth - rect.width - rect.x - 130,
+        // this will calculate the position of the newRec based on the viewPort
+        x: window.innerWidth - rect.width - rect.x,
         y: rect.y + rect.height,
       };
 
-      const distanceToBottom = window.innerHeight - rect.bottom;
-      const distanceToRight = window.innerWidth - rect.right;
+      const distanceToBottom = window.innerHeight - rect.bottom; //this will calculate the distance from the bottom of the viewport for any element that to close to the bottom of the the page
+      const distanceToRight = window.innerWidth - rect.right; //this will calculate the distance from the right  of the viewport for any element that to close to the right of the the page to prevent the drop down menu to not show up
       const buffer = 200; // Adjust this value as needed
-
+      //console.log(distanceToBottom, distanceToRight, newRectPosition.x);
       // Move the position up if it's too close to the bottom
       if (distanceToBottom < buffer) {
         newRectPosition.y = Math.max(
@@ -122,7 +125,7 @@ function Toggle({ id }: ToggleProps) {
 }
 
 function List({ id, children }: ListProps) {
-  console.log(id);
+  console.log();
   const { openId, rectPosition, close } = useContext(MenuContext)!;
   const ref = useClickOutside(close) as React.RefObject<HTMLUListElement>; // Type assertion
 

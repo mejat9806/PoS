@@ -8,14 +8,14 @@ export type settingsDataTypes = {
 const { data, error } = await supabase.from("settings").select("*").single();
 export async function getSetting() {
   if (error) {
-    console.log(error.message);
+    console.log();
     throw new Error(error.message);
   }
   return data;
 }
 
 export async function updateSettings(newSetting: settingsDataTypes) {
-  console.log(newSetting);
+  console.log();
   const { data, error } = await supabase
     .from("settings")
     .update(newSetting)

@@ -5,8 +5,9 @@ import SaleCharts from "../utils/SaleCharts";
 export type OrderDataProps = {
   orderData: OrderType[];
   dataCategory: string[];
+  label?: string;
 };
-function ItemSaleChart({ orderData, dataCategory }: OrderDataProps) {
+function ItemSaleChart({ orderData, dataCategory, label }: OrderDataProps) {
   const chartData = SaleCharts({ orderData, dataCategory });
   if (!orderData || orderData.length === 0) {
     return (
@@ -16,24 +17,33 @@ function ItemSaleChart({ orderData, dataCategory }: OrderDataProps) {
     );
   }
   return (
-    <BarChart
-      width={500}
-      height={500}
-      data={chartData}
-      margin={{ top: 20, right: 30, left: 20, bottom: 100 }}
-    >
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis
-        dataKey="name"
-        angle={-45}
-        textAnchor="end"
-        interval={0}
-        fontSize={10}
-      />
-      <YAxis label={{ value: "Quantity", angle: -90 }} />
-      <Tooltip />
-      <Bar dataKey="quantity" fill="#8884d8" />
-    </BarChart>
+    <div className="flex flex-col items-center justify-center">
+      <h1 className="text-center font-roboto font-extrabold capitalize">
+        {label}
+      </h1>
+      <BarChart
+        width={500}
+        height={500}
+        data={chartData}
+        margin={{ top: 20, bottom: 100 }}
+      >
+        <CartesianGrid strokeDasharray="3 1" />
+        <XAxis
+          dataKey="name"
+          angle={-45}
+          textAnchor="end"
+          interval={0}
+          fontSize={10}
+        />
+        <YAxis
+          label={{ value: "Quantity", angle: -90, fontSize: 10 }}
+          padding={{ top: 10 }}
+          fontSize={10}
+        />
+        <Tooltip />
+        <Bar dataKey="quantity" fill="#8884d8" />
+      </BarChart>
+    </div>
   );
 }
 

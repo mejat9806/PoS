@@ -7,17 +7,17 @@ type DeleteProps = {
   onCloseModal?: () => void;
 };
 function ConfirmDelete({ item, onCloseModal }: DeleteProps) {
-  console.log(item.id);
+  console.log();
   const { DeleleteProduct, isPendingDelete } = useDeleteProduct();
   function handleDeleteProduct() {
     DeleleteProduct(item.id);
     onCloseModal?.();
   }
   return (
-    <div className="bg-white   rounded-md w-[500px] flex flex-col mx-auto items-center justify-between gap-10">
-      <h1 className="capitalize text-3xl font-roboto font-bold">
+    <div className="mx-auto   flex w-[500px] flex-col items-center justify-between gap-10 rounded-md bg-white">
+      <h1 className="font-roboto text-3xl font-bold capitalize">
         confirm
-        <span className="font-extrabold text-red-600 uppercase"> delete</span> ?
+        <span className="font-extrabold uppercase text-red-600"> delete</span> ?
       </h1>
       <div>
         <h1 className="text-2xl font-medium">{item.name}</h1>

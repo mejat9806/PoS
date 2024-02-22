@@ -19,7 +19,7 @@ export async function getOrderData(): Promise<OrderType[]> {
 }
 export async function getTodayOrder({ page }: { page: number }) {
   const today = getToday(); // Get today's date
-  console.log(today);
+  console.log();
   const startDate = `${today}T00:00:00.000Z`; // Start at 8:00 AM MYT
   const endDate = `${today}T14:00:00.000Z`; // End at 10:00 PM MYT
   let query = supabase
@@ -45,7 +45,7 @@ export async function getTodayOrder({ page }: { page: number }) {
 }
 export async function getTodayOrderforWidget() {
   const today = getToday(); // Get today's date
-  console.log(today);
+  console.log();
   const startDate = `${today}T00:00:00.000Z`; // Start at 8:00 AM MYT
   const endDate = `${today}T14:00:00.000Z`; // End at 10:00 PM MYT
   const { data, error } = await supabase

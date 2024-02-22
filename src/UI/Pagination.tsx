@@ -13,15 +13,15 @@ function Pagination({ countValue = 0 }: PaginationProps) {
   const currentPage = !seachParams.get("page")
     ? 1
     : Number(seachParams.get("page"));
-
+  //this is used to check if the current page is not selected from search params set it to 1 or else set it to search params
   const pageCount = Math.ceil(countValue / PAGE_SIZE);
 
-  // Calculate the starting index for pagination buttons
+  // this use  calculate the starting index for pagination buttons
   const startPageIndex = Math.max(1, currentPage - 1);
 
-  // Calculate the end index for pagination buttons
+  // this use to calculate the end index for pagination buttons
   const endPageIndex = Math.min(pageCount, startPageIndex + 2);
-  console.log(startPageIndex, endPageIndex);
+  console.log();
   const pageCountButton = Array.from(
     { length: endPageIndex - startPageIndex + 1 },
     (_, index) => startPageIndex + index,
@@ -42,7 +42,7 @@ function Pagination({ countValue = 0 }: PaginationProps) {
     setSearchParams(seachParams);
   } */
   function handlePageButton(pageButton: number) {
-    console.log(pageButton);
+    console.log();
     seachParams.set("page", pageButton.toString());
     setSearchParams(seachParams);
   }

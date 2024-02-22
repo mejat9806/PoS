@@ -2,10 +2,9 @@ export const formatCurrency = (value: number) =>
   new Intl.NumberFormat("en", { style: "currency", currency: "MYR" }).format(
     value,
   );
-// Supabase needs an ISO date string. However, that string will be different on every render because the MS or SEC have changed, which isn't good. So we use this trick to remove any time
+// Supabase needs an ISO date string.
 export const getToday = function () {
   const today = new Date();
-  // Set time to the start or end of the day based on options
   today.setDate(today.getDate());
 
   // Return only the date part in ISO format

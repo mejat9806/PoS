@@ -16,7 +16,7 @@ export async function getAllData(): Promise<ProductsTypes[]> {
     .from("Product")
     .select("*")) as { data: ProductsTypes[]; error: PostgrestError | null };
   if (error) {
-    console.log(error);
+    console.log();
     throw new Error("Fetching data fail");
   }
   return Product;
@@ -24,7 +24,7 @@ export async function getAllData(): Promise<ProductsTypes[]> {
 /* export async function getAllData() {
   const { data: Product, error } = await supabase.from("Product").select("*");
   if (error) {
-    console.log(error);
+   console.log()
     throw new Error("Fetching data fail");
   }
   return Product;
@@ -32,29 +32,29 @@ export async function getAllData(): Promise<ProductsTypes[]> {
  */
 
 export async function updateProductData(newData: ProductsTypes, id: number) {
-  console.log("data to update", newData, "id:", id);
+  console.log();
   const { data, error } = await supabase
     .from("Product")
     .update(newData)
     .eq("id", id)
     .select();
   if (error) {
-    console.log(error);
+    console.log();
   }
-  console.log(data);
+  console.log();
   return data;
 }
 /* export async function UpdateStatus({ Status, id }: UpdateProductDataParams) {
-  console.log("data to update", Status, "id:", id);
+ console.log()
   const { data, error } = await supabase
     .from("Product")
     .update(Status)
     .eq("id", id)
     .select();
   if (error) {
-    console.log(error);
+   console.log()
   }
-  console.log(data);
+ console.log()
   return data;
 }
  */
@@ -93,8 +93,8 @@ export async function addNewProduct(newData: newDataType) {
   const imagePath = hasImage
     ? `${supabaseUrl}/storage/v1/object/public/productimg/${imageName}`
     : "";
-  console.log(imageName);
-  console.log(imagePath);
+  console.log();
+  console.log();
   const { data, error } = await supabase
     .from("Product")
     .insert([{ ...newData, imagesrc: hasImage ? imagePath : null }])

@@ -23,7 +23,7 @@ function MenuItemCard({ item }: PropType) {
   const [imageLoaded, setImageLoaded] = useState<boolean>(false);
   const dispatch = useDispatch();
   const location = useLocation();
-  console.log(location);
+  console.log();
   function handleImageLoad() {
     setImageLoaded(true);
   }

@@ -50,8 +50,8 @@ function AddProductForm({ onCloseModal }: addProductsProps) {
   } = useForm();
   const selectedCategory = watch("category");
   //const categoryToWatched = selectedCategory;
-  // console.log(categoryToWatched);
-  // console.log(catogoryWithPiece.includes(categoryToWatched));
+  //console.log()
+  //console.log()
   //const testgetvalue = getValues("name");//this just a test getvalue
   //console.log(testgetvalue);
   const { errors } = formState;
@@ -103,7 +103,7 @@ function AddProductForm({ onCloseModal }: addProductsProps) {
       description: data.piece === "" ? undefined : data.description,
       imagesrc: image,
     };
-    console.log(newData);
+    console.log();
     addProduct(newData as newDataType, {
       onSuccess: () => {
         reset();
@@ -117,7 +117,7 @@ function AddProductForm({ onCloseModal }: addProductsProps) {
       <FormLabel label="Product Category" error={errors?.category?.message}>
         <select
           defaultValue="select category"
-          className={`disabled:bg-slate-300 disabled:cursor-not-allowed bg-slate-100 rounded-md focus:outline-none focus:ring ${
+          className={`rounded-md bg-slate-100 focus:outline-none focus:ring disabled:cursor-not-allowed disabled:bg-slate-300 ${
             errors?.category?.message || categoryToWatched === "select category"
               ? "focus:ring-red-600"
               : "focus:ring-yellow-300"
@@ -138,7 +138,7 @@ function AddProductForm({ onCloseModal }: addProductsProps) {
       </FormLabel>
       <FormLabel label="Product Name" error={errors?.name?.message}>
         <input
-          className={`disabled:bg-slate-300 disabled:cursor-not-allowed bg-slate-100 rounded-md focus:outline-none focus:ring ${
+          className={`rounded-md bg-slate-100 focus:outline-none focus:ring disabled:cursor-not-allowed disabled:bg-slate-300 ${
             errors?.name?.message || !watch("name")
               ? "focus:ring-red-600"
               : "focus:ring-yellow-300"
@@ -151,7 +151,7 @@ function AddProductForm({ onCloseModal }: addProductsProps) {
       </FormLabel>
       <FormLabel label="Product price" error={errors?.price?.message}>
         <input
-          className={`disabled:bg-slate-300 disabled:cursor-not-allowed bg-slate-100 rounded-md focus:outline-none focus:ring ${
+          className={`rounded-md bg-slate-100 focus:outline-none focus:ring disabled:cursor-not-allowed disabled:bg-slate-300 ${
             errors?.price?.message || !watch("price")
               ? "focus:ring-red-600"
               : "focus:ring-yellow-300"
@@ -175,7 +175,7 @@ function AddProductForm({ onCloseModal }: addProductsProps) {
       </FormLabel>
       <FormLabel label="Piece Per Order" error={errors?.piece?.message}>
         <input
-          className={`disabled:bg-slate-300 disabled:cursor-not-allowed bg-slate-100 rounded-md focus:outline-none focus:ring ${
+          className={`rounded-md bg-slate-100 focus:outline-none focus:ring disabled:cursor-not-allowed disabled:bg-slate-300 ${
             errors?.piece?.message || !watch("piece")
               ? "focus:ring-red-600"
               : "focus:ring-yellow-300"
@@ -196,7 +196,7 @@ function AddProductForm({ onCloseModal }: addProductsProps) {
         error={errors?.description?.message}
       >
         <textarea
-          className={`disabled:bg-slate-300 disabled:cursor-not-allowed w-full bg-slate-100 rounded-md focus:outline-none focus:ring ${
+          className={`w-full rounded-md bg-slate-100 focus:outline-none focus:ring disabled:cursor-not-allowed disabled:bg-slate-300 ${
             errors?.description?.message || !watch("description")
               ? "focus:ring-red-600"
               : "focus:ring-yellow-300"
@@ -211,7 +211,7 @@ function AddProductForm({ onCloseModal }: addProductsProps) {
       </FormLabel>
       <FormLabel label="Product Image" error={errors?.imagesrc?.message}>
         <input
-          className={`disabled:bg-slate-300 disabled:cursor-not-allowed bg-slate-100 rounded-md focus:outline-none focus:ring ${
+          className={`rounded-md bg-slate-100 focus:outline-none focus:ring disabled:cursor-not-allowed disabled:bg-slate-300 ${
             errors?.imagesrc?.message || !watch("imagesrc")
               ? "focus:ring-red-600"
               : "focus:ring-yellow-300"

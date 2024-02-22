@@ -17,7 +17,7 @@ function useUpdateProduct() {
       queryClient.invalidateQueries({ queryKey: ["productData"] });
     },
     onError: (error) => {
-      console.log(error.message);
+      console.log();
       toast.error("Product not updated");
       throw new Error(error.message);
     },

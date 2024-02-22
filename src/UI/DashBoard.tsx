@@ -10,12 +10,12 @@ import useTodayActivity from "../DashBoard/useTodayActivity";
 import Pagination from "./Pagination";
 import useTodayActivityWidget from "../DashBoard/useTodayActivityWidget";
 import SaleCarts from "./SaleCarts";
-import { useOrderData } from "../Orders/useOrderData";
+import { useSearchParams } from "react-router-dom";
 
 function DashBoard() {
   const { dataBasedOnDate, isLoadingDate } = useRecentOrder();
-  const { orderData, loadingOrderdata } = useOrderData();
-
+  const [searchParams] = useSearchParams();
+  const dateForChart = searchParams.get("last");
   const { isTodayActivity, todayActivity, countValue } = useTodayActivity();
   const { TodayOrderforWidget, isTodayActivityWidget } =
     useTodayActivityWidget();
@@ -24,15 +24,14 @@ function DashBoard() {
     isTodayActivity ||
     !todayActivity ||
     isLoadingDate ||
-    isTodayActivityWidget ||
-    loadingOrderdata
+    isTodayActivityWidget
   )
     return <Spinner />;
   const todayTotalSales = TodayOrderforWidget?.reduce(
     (sum, item) => sum + item.total_price,
     0,
   );
-  console.log(orderData);
+  console.log();
   const TodayOrderTotal = TodayOrderforWidget?.length;
   const orderTotal = dataBasedOnDate?.length;
   const saleTotal = dataBasedOnDate?.reduce(
@@ -71,30 +70,42 @@ function DashBoard() {
           <Pagination countValue={countValue} />
         </main>
         <h1 className="font-roboto text-4xl font-bold">Sale Chart</h1>
-        {!orderData || orderData.length === 0 ? (
+        {!dataBasedOnDate || dataBasedOnDate.length === 0 ? (
           <h1 className="flex  items-center justify-center font-roboto font-extrabold">
             No sale data to show
           </h1>
         ) : (
-          <div className="grid grid-cols-3">
-            <div>
-              <h1 className="text-center">BBQ sale Chart</h1>
-              <SaleCarts
-                orderData={orderData}
-                dataCategory={["bbq_chicken", "bbq_beef", "bbq_fish"]}
-              />
-            </div>
+          <div className="grid grid-cols-2 gap-10">
             <SaleCarts
-              orderData={orderData}
+              label={`BBQ sale for ${dateForChart} days `}
+              orderData={dataBasedOnDate}
+              dataCategory={["bbq_chicken", "bbq_beef", "bbq_fish"]}
+            />
+            <SaleCarts
+              label={`Burger sale for ${dateForChart} days `}
+              orderData={dataBasedOnDate}
               dataCategory={["burger_beef", "burger_chicken"]}
             />
             <SaleCarts
-              orderData={orderData}
+              label={`Special Menu sale for ${dateForChart} days `}
+              orderData={dataBasedOnDate}
               dataCategory={["special_beef", "special_sandwich"]}
             />
-            <SaleCarts orderData={orderData} dataCategory={["pizza"]} />
-            <SaleCarts orderData={orderData} dataCategory={["sides"]} />
-            <SaleCarts orderData={orderData} dataCategory={["drink"]} />
+            <SaleCarts
+              label={`Pizza sale for ${dateForChart} days `}
+              orderData={dataBasedOnDate}
+              dataCategory={["pizza"]}
+            />
+            <SaleCarts
+              label={`Sides sale for ${dateForChart} days `}
+              orderData={dataBasedOnDate}
+              dataCategory={["sides"]}
+            />
+            <SaleCarts
+              label={`Drinks sale for ${dateForChart} days `}
+              orderData={dataBasedOnDate}
+              dataCategory={["drink"]}
+            />
           </div>
         )}
       </div>

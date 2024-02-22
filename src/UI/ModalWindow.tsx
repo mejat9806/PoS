@@ -40,7 +40,7 @@ type openFunctionProps = {
 };
 function OpenFunction({ children, opens: opensWithName }: openFunctionProps) {
   const { open } = useContext(modalContext);
-  console.log("open");
+  console.log();
   return cloneElement(children as React.ReactElement, {
     onClick: () => open(opensWithName),
   });
@@ -55,9 +55,9 @@ function WindowFunction({ children, name }: windowFunctionProps) {
   if (name !== openName) return null;
 
   return createPortal(
-    <div className="fixed top-0 left-0 w-full h-full bg-gray-300/50 z-50 transition-all duration-200">
+    <div className="fixed left-0 top-0 z-50 h-full w-full bg-gray-300/50 transition-all duration-200">
       <div
-        className="fixed top-1/2 left-1/2 transform translate-x-[-50%] translate-y-[-50%] bg-white rounded-md shadow-2xl p-8 transition-all duration-200 w-fit"
+        className="fixed left-1/2 top-1/2 w-fit translate-x-[-50%] translate-y-[-50%] transform rounded-md bg-white p-8 shadow-2xl transition-all duration-200"
         ref={ref}
       >
         <button onClick={close} className="absolute right-0 top-0 p-2">

@@ -27,7 +27,7 @@ function BBQ() {
   const sortedProductData = (productData || [])
     .slice()
     .sort((a, b) => a.id - b.id);
-  console.log(sortedProductData);
+  console.log();
   const BBQBeefitem: ProductDataProps[] = sortedProductData.filter(
     (product) => product.category === "bbq_beef",
   );

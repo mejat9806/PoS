@@ -10,13 +10,13 @@ function MainLayOut() {
   const carts = useSelector(getChart);
   const dialogRef = useRef<HTMLDialogElement>(null);
   function toggleDialog() {
-    console.log(dialogRef.current);
+    console.log();
     if (!dialogRef.current) return;
     dialogRef.current.hasAttribute("open")
       ? dialogRef.current.close()
       : dialogRef.current.showModal();
   }
-  console.log(carts);
+  console.log();
   // const cartAllQTY = carts.reduce((acc,qty)=>)
   useEffect(() => {
     if (!carts.length) {
