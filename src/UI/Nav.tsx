@@ -106,7 +106,7 @@ function Nav({ setOpen, open }: ProptypesNav) {
                       className={({ isActive }) =>
                         `${
                           isActive
-                            ? "w-full rounded-l-full bg-white pl-3 text-center text-black "
+                            ? "w-full rounded-l-full bg-gray-100 pl-3 text-center text-black "
                             : ""
                         } navLinkIcon p-1`
                       }

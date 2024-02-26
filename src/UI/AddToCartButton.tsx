@@ -3,6 +3,7 @@ import Button from "./Button";
 import { useSelector } from "react-redux";
 import UpdateQuantity from "./UpdateQuantity";
 import { getCurrentQuantityById } from "../Cart/CartSlice";
+import { closeTime, openTime } from "../utils/constants";
 type ButtonTypeProps = {
   onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   children: ReactNode;
@@ -12,6 +13,7 @@ type ButtonTypeProps = {
 
 function AddToCartButton({ onClick, children, id, sold_out }: ButtonTypeProps) {
   const currentQty = useSelector(getCurrentQuantityById(id));
+
   const isIncart = currentQty >= 1;
   return (
     <div>
@@ -22,6 +24,7 @@ function AddToCartButton({ onClick, children, id, sold_out }: ButtonTypeProps) {
       )}
       {!isIncart && (
         <Button
+          disabled={closeTime || openTime}
           style={`${!sold_out ? "addCart" : "soldOut"}`}
           onClick={onClick}
           sold_out={sold_out}

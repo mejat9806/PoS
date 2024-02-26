@@ -1,4 +1,12 @@
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Rectangle,
+} from "recharts";
 import { OrderType } from "../Orders/getOrder";
 import SaleCharts from "../utils/SaleCharts";
 
@@ -22,7 +30,7 @@ function ItemSaleChart({ orderData, dataCategory, label }: OrderDataProps) {
         {label}
       </h1>
       <BarChart
-        width={500}
+        width={800}
         height={500}
         data={chartData}
         margin={{ top: 20, bottom: 100 }}
@@ -40,8 +48,12 @@ function ItemSaleChart({ orderData, dataCategory, label }: OrderDataProps) {
           padding={{ top: 10 }}
           fontSize={10}
         />
-        <Tooltip />
-        <Bar dataKey="quantity" fill="#8884d8" />
+        <Tooltip labelClassName="text-black font-roboto" />
+        <Bar
+          dataKey="quantity"
+          fill="#ffd901"
+          activeBar={<Rectangle fill="#e7cf45" stroke="yellow" />}
+        />
       </BarChart>
     </div>
   );

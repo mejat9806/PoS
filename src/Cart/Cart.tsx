@@ -14,6 +14,7 @@ import { useState } from "react";
 import { useOrderData } from "../Orders/useOrderData";
 import toast from "react-hot-toast";
 import EmptyCart from "../UI/EmptyCart";
+import { closeTime, openTime } from "../utils/constants";
 
 type PropTypes = {
   openCart: boolean;
@@ -127,7 +128,7 @@ function Cart({ setOpenCart, toggleDialog }: PropTypes) {
             <Button
               style="addCartMain"
               onClick={handleSendData}
-              disabled={carts.length === 0}
+              disabled={carts.length === 0 || closeTime || openTime}
             >
               Order
             </Button>

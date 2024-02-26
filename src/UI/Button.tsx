@@ -21,7 +21,7 @@ const normalButton =
   "rounded-md px-2 py-2 md:px-6 md:py-3 font-roboto font-bold whitespace-nowrap uppercase ";
 
 const buttonStyles: ButtonStyles = {
-  addCart: `bg-yellow-300 hover:bg-black hover:text-yellow-400 ${normalButton} transition-all duration-150 md:w-[100]`,
+  addCart: `bg-yellow-300 hover:bg-black hover:text-yellow-400 ${normalButton} transition-all duration-150 md:w-[100] disabled:bg-gray-700/40 disabled:cursor-not-allowed disabled:hover:text-gray-800`,
   soldOut: `bg-red-300  ${normalButton} transition-all duration-150 md:w-[100]`,
   dropMenuBtn: `bg-slate-50  hover:text-yellow-400 font-roboto font-bold transition-all duration-150  border-2 ${normalButton} hover:bg-black w-full `,
   addCartMain: `bg-green-300 text-black hover:bg-green-600 hover:text-yellow-400 ${normalButton} transition-all duration-150 w-full mx-5  disabled:bg-gray-700/40 disabled:cursor-not-allowed disabled:hover:text-gray-800`,
@@ -60,7 +60,7 @@ function Button({
     }
   };
   const additionalClasses = "bg-yellow-300 text-black";
-
+  console.log(disabled);
   if (kindOfButton) {
     return (
       <button

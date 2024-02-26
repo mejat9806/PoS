@@ -33,4 +33,7 @@
   .tableHeader {
     @apply text-[0.8rem];
   }
+  .sliderButton {
+    @apply rounded-full bg-gray-300/25 p-3 text-black hover:scale-125 hover:bg-yellow-300/25;
+  }
 }

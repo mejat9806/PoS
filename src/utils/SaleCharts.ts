@@ -9,7 +9,7 @@ type ItemType = {
   category: string;
   totalSale: number;
 };
-function SaleCharts({ orderData, dataCategory }: OrderDataProps) {
+function SaleCharts({ orderData = [], dataCategory }: OrderDataProps) {
   const itemSaleCounts: { [itemName: string]: number } = orderData.reduce(
     (acc, order) => {
       order.cart.forEach((item: ItemType) => {

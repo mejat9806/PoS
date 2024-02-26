@@ -9,13 +9,10 @@ import Spinner from "./Spinner";
 import useTodayActivity from "../DashBoard/useTodayActivity";
 import Pagination from "./Pagination";
 import useTodayActivityWidget from "../DashBoard/useTodayActivityWidget";
-import SaleCarts from "./SaleCarts";
-import { useSearchParams } from "react-router-dom";
+import { ChartSection } from "./ChartSection";
 
 function DashBoard() {
   const { dataBasedOnDate, isLoadingDate } = useRecentOrder();
-  const [searchParams] = useSearchParams();
-  const dateForChart = searchParams.get("last");
   const { isTodayActivity, todayActivity, countValue } = useTodayActivity();
   const { TodayOrderforWidget, isTodayActivityWidget } =
     useTodayActivityWidget();
@@ -69,45 +66,9 @@ function DashBoard() {
 
           <Pagination countValue={countValue} />
         </main>
-        <h1 className="font-roboto text-4xl font-bold">Sale Chart</h1>
-        {!dataBasedOnDate || dataBasedOnDate.length === 0 ? (
-          <h1 className="flex  items-center justify-center font-roboto font-extrabold">
-            No sale data to show
-          </h1>
-        ) : (
-          <div className="grid grid-cols-2 gap-10">
-            <SaleCarts
-              label={`BBQ sale for ${dateForChart} days `}
-              orderData={dataBasedOnDate}
-              dataCategory={["bbq_chicken", "bbq_beef", "bbq_fish"]}
-            />
-            <SaleCarts
-              label={`Burger sale for ${dateForChart} days `}
-              orderData={dataBasedOnDate}
-              dataCategory={["burger_beef", "burger_chicken"]}
-            />
-            <SaleCarts
-              label={`Special Menu sale for ${dateForChart} days `}
-              orderData={dataBasedOnDate}
-              dataCategory={["special_beef", "special_sandwich"]}
-            />
-            <SaleCarts
-              label={`Pizza sale for ${dateForChart} days `}
-              orderData={dataBasedOnDate}
-              dataCategory={["pizza"]}
-            />
-            <SaleCarts
-              label={`Sides sale for ${dateForChart} days `}
-              orderData={dataBasedOnDate}
-              dataCategory={["sides"]}
-            />
-            <SaleCarts
-              label={`Drinks sale for ${dateForChart} days `}
-              orderData={dataBasedOnDate}
-              dataCategory={["drink"]}
-            />
-          </div>
-        )}
+        <section>
+          <ChartSection />
+        </section>
       </div>
     </div>
   );
