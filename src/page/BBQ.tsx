@@ -2,9 +2,9 @@ import toast from "react-hot-toast";
 import Spinner from "../UI/Spinner";
 import { useData } from "../data/useData";
 import MenuItemCard from "../UI/MenuItemCard";
-import { MdOutlineSubdirectoryArrowLeft } from "react-icons/md";
 import useUpdateProduct from "../MenuData/ProductData/useUpdateProduct";
 import Menu from "../UI/Menus";
+import TitleForPage from "../UI/TitleForPage";
 
 export type ProductDataProps = {
   id: number;
@@ -44,20 +44,11 @@ function BBQ() {
   return (
     <Menu>
       <div className=" sm:flex  sm:flex-col md:mx-0 ">
-        <h1 className="mb-6 flex font-roboto text-3xl font-extrabold uppercase md:text-6xl lg:text-9xl ">
-          Barbeque{" "}
-          <span className="rotate-[270deg] text-yellow-400">
-            <MdOutlineSubdirectoryArrowLeft />
-          </span>
-        </h1>
+        <TitleForPage title="Barbeque" />
         <div className="   gap-x-6 lg:grid lg:grid-cols-2">
           <div className="mb-10">
-            <h1 className="flex border-b-2 border-black/30 font-menuTitle text-5xl font-semibold lg:text-6xl">
-              BEEF{" "}
-              <span className="rotate-[270deg] text-yellow-400">
-                <MdOutlineSubdirectoryArrowLeft />
-              </span>
-            </h1>
+            <TitleForPage title="Beef" subTitle={true} />
+
             <div className="mt-5 grid w-full  grid-rows-2 gap-5 md:px-6">
               {BBQBeefitem.map((item) => (
                 <div className="odd:bg-gray-200/30 " key={item.id}>
@@ -66,14 +57,9 @@ function BBQ() {
               ))}
             </div>
           </div>
-
           <div className="mb-10">
-            <h1 className="flex border-b-2 border-black/30 font-menuTitle text-5xl font-semibold lg:text-6xl">
-              CHICKEN{" "}
-              <span className="rotate-[270deg] text-yellow-400">
-                <MdOutlineSubdirectoryArrowLeft />
-              </span>
-            </h1>
+            <TitleForPage title="Chicken" subTitle={true} />
+
             <div className="mt-5 grid w-full  grid-rows-2 gap-5 md:px-6">
               {BBQChickenitem.map((item) => (
                 <div className="odd:bg-gray-200/30  " key={item.id}>
@@ -82,14 +68,9 @@ function BBQ() {
               ))}
             </div>
           </div>
-
           <div className="mb-10">
-            <h1 className="flex border-b-2 border-black/30  font-menuTitle text-5xl font-semibold lg:text-6xl">
-              FISH{" "}
-              <span className="rotate-[270deg] text-yellow-400">
-                <MdOutlineSubdirectoryArrowLeft />
-              </span>
-            </h1>
+            <TitleForPage title="Fish" subTitle={true} />
+
             <div className="mb-10 mt-5 grid  w-full grid-rows-2 gap-5 md:px-6">
               {FishChickenitem.map((item) => (
                 <div className="odd:bg-gray-200/30 " key={item.id}>
@@ -98,6 +79,7 @@ function BBQ() {
               ))}
             </div>
           </div>
+          T
         </div>
       </div>
     </Menu>

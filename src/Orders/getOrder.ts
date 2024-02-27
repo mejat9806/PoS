@@ -8,6 +8,8 @@ export type OrderType = {
   TableNo: number;
   total_price: number;
   category: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  created_at?: any;
 };
 
 export async function getOrderData(): Promise<OrderType[]> {

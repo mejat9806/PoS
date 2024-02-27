@@ -5,7 +5,7 @@ import Error from "../UI/Error";
 import MenuItemCard from "../UI/MenuItemCard";
 import DropDownMenus from "../UI/Menus";
 import { ProductDataProps } from "./BBQ";
-import { MdOutlineSubdirectoryArrowLeft } from "react-icons/md";
+import TitleForPage from "../UI/TitleForPage";
 
 function SpecialMenu() {
   const { error, isLoading, productData } = useData();
@@ -27,21 +27,10 @@ function SpecialMenu() {
   return (
     <DropDownMenus>
       <div className="transition-all duration-150 ">
-        <h1 className="mb-6 flex font-roboto text-5xl font-extrabold uppercase md:text-6xl lg:text-9xl">
-          Special{" "}
-          <span className="rotate-[270deg] text-yellow-400">
-            <MdOutlineSubdirectoryArrowLeft />
-          </span>
-        </h1>
-
+        <TitleForPage title="Special" />
         <div className=" grid justify-center gap-10 ">
           <div>
-            <h1 className="mx-auto flex border-b-2 border-black/30 font-menuTitle text-5xl  font-semibold lg:text-6xl">
-              Sandwich{" "}
-              <span className="rotate-[270deg] text-yellow-400">
-                <MdOutlineSubdirectoryArrowLeft />
-              </span>
-            </h1>{" "}
+            <TitleForPage title="Sandwich" subTitle={true} />
             <div className="flex justify-center ">
               <div className="mt-5 flex w-fit flex-col  gap-9 md:grid md:grid-cols-1 lg:grid-cols-2">
                 {specialSandData.map((specialsand) => (
@@ -51,12 +40,8 @@ function SpecialMenu() {
             </div>
           </div>
           <div>
-            <h1 className="mx-auto flex border-b-2 border-black/30 font-menuTitle text-5xl  font-semibold lg:text-6xl">
-              Beef Plater{" "}
-              <span className="rotate-[270deg] text-yellow-400">
-                <MdOutlineSubdirectoryArrowLeft />
-              </span>
-            </h1>{" "}
+            <TitleForPage title="Beef Plater" subTitle={true} />
+
             <div className="mb-24 flex justify-center">
               <div className="mt-5 flex w-full flex-col gap-9  md:grid md:grid-cols-1 lg:grid-cols-2">
                 {specialData.map((special) => (
@@ -65,6 +50,7 @@ function SpecialMenu() {
               </div>
             </div>
           </div>
+          t
         </div>
       </div>
     </DropDownMenus>

@@ -53,7 +53,7 @@ export function ChartSection() {
       >
         <div className="flex justify-between">
           <h1
-            className="font-roboto text-4xl font-bold"
+            className="  stroke-1 font-roboto text-4xl font-bold   hover:text-yellow-300 "
             onClick={() => setOpenChart((prev) => !prev)}
           >
             Sale Chart

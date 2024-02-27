@@ -34,7 +34,7 @@ function Row({ children }: { children: React.ReactNode }) {
 }
 
 type BodyData = {
-  data: any[];
+  data: any;
   render: (item: any, index: number) => ReactNode;
 };
 function Body({ data, render }: BodyData) {

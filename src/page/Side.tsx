@@ -6,7 +6,7 @@ import { useData } from "../data/useData";
 import MenuItemCard from "../UI/MenuItemCard";
 import DropDownMenus from "../UI/Menus";
 import { ProductDataProps } from "./BBQ";
-import { MdOutlineSubdirectoryArrowLeft } from "react-icons/md";
+import TitleForPage from "../UI/TitleForPage";
 
 function Side() {
   const { error, isLoading, productData } = useData();
@@ -24,12 +24,7 @@ function Side() {
   }
   return (
     <DropDownMenus>
-      <h1 className="mb-6 flex font-roboto text-5xl font-extrabold uppercase  md:text-9xl">
-        Sides{" "}
-        <span className="rotate-[270deg] text-yellow-400">
-          <MdOutlineSubdirectoryArrowLeft />
-        </span>
-      </h1>
+      <TitleForPage title="Sides" />
       <div className="mb-28 flex justify-center">
         <div className="flex w-fit  flex-col gap-9  sm:grid-cols-2 md:grid lg:grid-cols-3 xl:grid-cols-4">
           {sideData.map((side) => (

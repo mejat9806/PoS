@@ -28,6 +28,7 @@ export type orderDataType = {
   quantity: number;
   price: number;
   totalPrice: number;
+  created_at?: string;
 };
 /*
 const orderData: orderDataType[] = [

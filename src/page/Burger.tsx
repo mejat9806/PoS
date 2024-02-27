@@ -6,6 +6,7 @@ import Error from "../UI/Error";
 import MenuItemCard from "../UI/MenuItemCard";
 import { MdOutlineSubdirectoryArrowLeft } from "react-icons/md";
 import Menu from "../UI/Menus";
+import TitleForPage from "../UI/TitleForPage";
 
 function Burger() {
   const { error, isLoading, productData } = useData();
@@ -29,13 +30,8 @@ function Burger() {
   return (
     <Menu>
       <div className=" sm:flex  sm:flex-col md:mx-0 ">
-        <h1 className="mb-6 flex font-roboto text-3xl font-extrabold uppercase  md:text-9xl">
-          Burger{" "}
-          <span className="rotate-[270deg] text-yellow-400">
-            <MdOutlineSubdirectoryArrowLeft />
-          </span>
-        </h1>
-        <div className=" grid justify-center gap-10 ">
+        <TitleForPage title="Burger" />
+        <div className=" grid justify-center gap-10 md:grid-cols-2 ">
           <div className="mb-10">
             <h1 className="flex border-b-2 border-black/30 font-menuTitle text-5xl font-semibold lg:text-6xl">
               BEEF{" "}
@@ -53,7 +49,7 @@ function Burger() {
           </div>
           <div className="mb-10">
             <h1 className="flex border-b-2 border-black/30 font-menuTitle text-5xl font-semibold lg:text-6xl">
-              BEEF{" "}
+              Chicken{" "}
               <span className="rotate-[270deg] text-yellow-400">
                 <MdOutlineSubdirectoryArrowLeft />
               </span>
@@ -66,6 +62,7 @@ function Burger() {
               ))}
             </div>
           </div>
+          T
         </div>
       </div>
     </Menu>

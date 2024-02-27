@@ -5,7 +5,7 @@ import { useData } from "../data/useData";
 import Error from "../UI/Error";
 import { ProductDataProps } from "./BBQ";
 import DropDownMenus from "../UI/Menus";
-import { MdOutlineSubdirectoryArrowLeft } from "react-icons/md";
+import TitleForPage from "../UI/TitleForPage";
 
 function Pizza() {
   const { error, isLoading, productData } = useData();
@@ -23,12 +23,7 @@ function Pizza() {
   return (
     <DropDownMenus>
       <div className="mb-24">
-        <h1 className="mb-6 flex font-roboto text-5xl font-extrabold uppercase  md:text-9xl">
-          Pizza{" "}
-          <span className="rotate-[270deg] text-yellow-400">
-            <MdOutlineSubdirectoryArrowLeft />
-          </span>
-        </h1>
+        <TitleForPage title="Pizza" />
         <div className="flex justify-center ">
           <div className="flex w-fit flex-col gap-10  md:grid md:grid-cols-4">
             {pizzaData.map((pizza) => (
@@ -37,6 +32,7 @@ function Pizza() {
               </div>
             ))}
           </div>
+          t
         </div>
       </div>
     </DropDownMenus>
