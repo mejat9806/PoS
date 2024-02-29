@@ -8,7 +8,7 @@ function PopUpMessage({
   setShowPopUp: Dispatch<SetStateAction<boolean>>;
   showPopUp: boolean;
 }) {
-  const popUpRef = useRef<HTMLDialogElement | null>(null); // Specify HTMLDialogElement type
+  const popUpRef = useRef<HTMLDialogElement | null>(null);
   function toggleDialog() {
     if (!popUpRef.current) return;
     popUpRef.current.hasAttribute("open")

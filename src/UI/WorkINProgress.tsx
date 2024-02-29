@@ -21,7 +21,7 @@ function WorkINProgress({
       </div>
       <div className="flex h-[100px] items-center">
         <h1 className="font-roboto text-3xl capitalize">
-          this is work in progress
+          this is still work in progress
         </h1>
       </div>
       <div className="mt-10 flex justify-center">
