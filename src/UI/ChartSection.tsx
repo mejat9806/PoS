@@ -6,43 +6,47 @@ import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import ChartSlider from "./ChartSlider";
+import useTodayActivity from "../DashBoard/useTodayActivity";
 
 export function ChartSection() {
   const { dataBasedOnDate, isLoadingDate } = useRecentOrder();
+  const { isTodayActivity, todayActivity } = useTodayActivity();
+  console.log(todayActivity, dataBasedOnDate);
   const [openChart, setOpenChart] = useState<boolean>(true);
   const [searchParams] = useSearchParams();
-  const dateForChart = searchParams.get("last");
-
-  if (isLoadingDate) return <Spinner />;
+  if (isLoadingDate || isTodayActivity) return <Spinner />;
+  const chartData =
+    searchParams.get("last") !== "1" ? dataBasedOnDate : todayActivity;
+  const dateForChart = !searchParams.get("last") ? 1 : searchParams.get("last");
   const saleCartSliderItem = [
     <SaleCarts
       label={`BBQ sale for ${dateForChart} days `}
-      orderData={dataBasedOnDate || []}
+      orderData={chartData || []}
       dataCategory={["bbq_chicken", "bbq_beef", "bbq_fish"]}
     />,
     <SaleCarts
       label={`Burger sale for ${dateForChart} days `}
-      orderData={dataBasedOnDate || []}
+      orderData={chartData || []}
       dataCategory={["burger_beef", "burger_chicken"]}
     />,
     <SaleCarts
       label={`Special Menu sale for ${dateForChart} days `}
-      orderData={dataBasedOnDate || []}
+      orderData={chartData || []}
       dataCategory={["special_beef", "special_sandwich"]}
     />,
     <SaleCarts
       label={`Pizza sale for ${dateForChart} days `}
-      orderData={dataBasedOnDate || []}
+      orderData={chartData || []}
       dataCategory={["pizza"]}
     />,
     <SaleCarts
       label={`Sides sale for ${dateForChart} days `}
-      orderData={dataBasedOnDate || []}
+      orderData={chartData || []}
       dataCategory={["sides"]}
     />,
     <SaleCarts
       label={`Drinks sale for ${dateForChart} days `}
-      orderData={dataBasedOnDate || []}
+      orderData={chartData || []}
       dataCategory={["drink"]}
     />,
   ];

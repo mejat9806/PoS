@@ -125,7 +125,6 @@ function Toggle({ id }: ToggleProps) {
 }
 
 function List({ id, children }: ListProps) {
-  console.log();
   const { openId, rectPosition, close } = useContext(MenuContext)!;
   const ref = useClickOutside(close) as React.RefObject<HTMLUListElement>; // Type assertion
 

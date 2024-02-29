@@ -30,7 +30,7 @@ function SaleCharts({ orderData = [], dataCategory }: OrderDataProps) {
     quantity: itemSaleCounts[name],
   }));
   //chart data is array of object that generate from the key of the itemSaleCount and its corresponding value based on category
-  console.log(itemSaleCounts);
+
   return chartData;
 }
 

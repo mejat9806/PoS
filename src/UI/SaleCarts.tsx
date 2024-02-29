@@ -16,6 +16,7 @@ export type OrderDataProps = {
   label?: string;
 };
 function ItemSaleChart({ orderData, dataCategory, label }: OrderDataProps) {
+  console.log(orderData);
   const chartData = SaleCharts({ orderData, dataCategory });
   if (!orderData || orderData.length === 0) {
     return (

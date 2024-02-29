@@ -16,7 +16,6 @@ function Side() {
   const sideData: ProductDataProps[] = (productData || []).filter(
     (product) => product.category === "sides",
   );
-  console.log();
 
   if (error) {
     toast.error("Something when wrong");

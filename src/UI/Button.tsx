@@ -60,7 +60,7 @@ function Button({
     }
   };
   const additionalClasses = "bg-yellow-300 text-black";
-  console.log(disabled);
+
   if (kindOfButton) {
     return (
       <button

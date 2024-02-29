@@ -21,8 +21,6 @@ function ChartSlider({ saleCartSliderItem }: sliderChart) {
     });
   }
 
-  console.log(saleCartSliderItem);
-
   return (
     <div className="flex items-center justify-center gap-3">
       <div className="sliderButton " onClick={PrevSlide}>

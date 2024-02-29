@@ -21,7 +21,7 @@ function Pagination({ countValue = 0 }: PaginationProps) {
 
   // this use to calculate the end index for pagination buttons
   const endPageIndex = Math.min(pageCount, startPageIndex + 2);
-  console.log();
+
   const pageCountButton = Array.from(
     { length: endPageIndex - startPageIndex + 1 },
     (_, index) => startPageIndex + index,
@@ -42,7 +42,6 @@ function Pagination({ countValue = 0 }: PaginationProps) {
     setSearchParams(seachParams);
   } */
   function handlePageButton(pageButton: number) {
-    console.log();
     seachParams.set("page", pageButton.toString());
     setSearchParams(seachParams);
   }

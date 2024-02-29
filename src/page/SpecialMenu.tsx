@@ -9,7 +9,7 @@ import TitleForPage from "../UI/TitleForPage";
 
 function SpecialMenu() {
   const { error, isLoading, productData } = useData();
-  console.log();
+
   if (isLoading) {
     return <Spinner />;
   }
@@ -19,7 +19,7 @@ function SpecialMenu() {
   const specialData: ProductDataProps[] = (productData || []).filter(
     (product) => product.category === "special_beef",
   );
-  console.log();
+
   if (error) {
     toast.error("Something when wrong");
     return <Error>Fetching Pizza data fail </Error>;

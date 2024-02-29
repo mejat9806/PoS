@@ -10,13 +10,14 @@ import useTodayActivity from "../DashBoard/useTodayActivity";
 import Pagination from "./Pagination";
 import useTodayActivityWidget from "../DashBoard/useTodayActivityWidget";
 import { ChartSection } from "./ChartSection";
+import { useSearchParams } from "react-router-dom";
 
 function DashBoard() {
   const { dataBasedOnDate, isLoadingDate } = useRecentOrder();
+  const [searchParams] = useSearchParams();
   const { isTodayActivity, todayActivity, countValue } = useTodayActivity();
   const { TodayOrderforWidget, isTodayActivityWidget } =
     useTodayActivityWidget();
-
   if (
     isTodayActivity ||
     !todayActivity ||
@@ -28,14 +29,14 @@ function DashBoard() {
     (sum, item) => sum + item.total_price,
     0,
   );
-  console.log();
   const TodayOrderTotal = TodayOrderforWidget?.length;
   const orderTotal = dataBasedOnDate?.length;
   const saleTotal = dataBasedOnDate?.reduce(
     (sum, item) => sum + item.total_price,
     0,
   );
-
+  const order = searchParams.get("last") === "1" ? TodayOrderTotal : orderTotal;
+  const sale = searchParams.get("last") === "1" ? todayTotalSales : saleTotal;
   return (
     <div className="container mx-auto max-w-[100%] ">
       <div className="  flex w-full flex-col justify-between sm:my-10 sm:flex-row">
@@ -49,13 +50,13 @@ function DashBoard() {
           <DashBoardSmallStuff
             name="Order"
             icon={<IoFastFoodOutline size={40} />}
-            numOfOrder={orderTotal || TodayOrderTotal}
+            numOfOrder={order}
             bgColor="bg-teal-200"
           />
           <DashBoardSmallStuff
             name="Sales"
             icon={<MdOutlinePeopleOutline size={40} />}
-            sale={saleTotal || todayTotalSales}
+            todaysale={sale}
             bgColor="bg-blue-200"
           />
         </div>

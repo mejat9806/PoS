@@ -6,15 +6,18 @@ import { useQuery } from "@tanstack/react-query";
 function useRecentOrder() {
   const [searchParams] = useSearchParams();
   const numDays = !searchParams.get("last")
-    ? 1
+    ? 0
     : Number(searchParams.get("last"));
-  const date = subDays(new Date(), numDays).toISOString();
+  const date = subDays(new Date(), numDays); // Get the date in local MY timezone
+  const isoDate = date.toISOString().split("T")[0]; // Convert to ISO string without time par
+  console.log(isoDate, "recentorder");
+
   const {
     isLoading: isLoadingDate,
     data: dataBasedOnDate,
     error,
   } = useQuery({
-    queryFn: () => getOrderByDate(date as string),
+    queryFn: () => getOrderByDate(isoDate),
     queryKey: ["order", numDays],
   });
   if (error instanceof Error) {

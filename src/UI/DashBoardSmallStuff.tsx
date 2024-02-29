@@ -6,15 +6,16 @@ function DashBoardSmallStuff({
   icon,
   numOfOrder,
   bgColor,
-  sale,
+  todaysale,
 }: {
   name: string;
   icon: ReactNode;
   numOfOrder?: number;
   bgColor: string;
-  sale?: number;
-  todayTotalSales?: number;
-  TodayOrderTotal?: number;
+  todaysale?: number;
+  TotalSales?: number;
+  OrderTotal?: number;
+  orderToday?: number;
 }) {
   return (
     <div className="flex w-full items-center gap-x-2 bg-white p-3">
@@ -24,9 +25,9 @@ function DashBoardSmallStuff({
         {numOfOrder && (
           <h2 className="  font-semibold ">{numOfOrder ? numOfOrder : 0}</h2>
         )}
-        {sale && (
+        {todaysale && (
           <h2 className="  font-semibold ">
-            {formatCurrency(sale ? sale : 0)}
+            {formatCurrency(todaysale ? todaysale : 0)}
           </h2>
         )}
       </div>

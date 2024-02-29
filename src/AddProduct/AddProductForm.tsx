@@ -103,7 +103,7 @@ function AddProductForm({ onCloseModal }: addProductsProps) {
       description: data.piece === "" ? undefined : data.description,
       imagesrc: image,
     };
-    console.log();
+
     addProduct(newData as newDataType, {
       onSuccess: () => {
         reset();

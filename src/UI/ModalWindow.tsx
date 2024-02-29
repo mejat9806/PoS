@@ -40,7 +40,7 @@ type openFunctionProps = {
 };
 function OpenFunction({ children, opens: opensWithName }: openFunctionProps) {
   const { open } = useContext(modalContext);
-  console.log();
+
   return cloneElement(children as React.ReactElement, {
     onClick: () => open(opensWithName),
   });

@@ -46,12 +46,11 @@ orderData.forEach((item) => {
 }); */
 
 function Cart({ setOpenCart, toggleDialog }: PropTypes) {
-  console.log();
   const [tableNo, setTableNo] = useState<string | number>("select table");
   const { isLoadingSetting, settingData } = useSettings();
   const { isUpdatingSetting } = useUpdateSetting();
   const { loadingOrderdata } = useOrderData();
-  console.log();
+
   const carts = useSelector(getChart);
   const cartPrice = useSelector(getCartPrice);
   const { creatingOrder } = useCreateOrder();
@@ -65,7 +64,7 @@ function Cart({ setOpenCart, toggleDialog }: PropTypes) {
     if (typeof tableNo === "string")
       return toast.error("Please select table NUMBER");
     const neworder = { cart: carts, TableNo: tableNo, total_price: totalPrice };
-    console.log();
+
     creatingOrder(neworder);
     toggleDialog?.();
     setTableNo("select table");

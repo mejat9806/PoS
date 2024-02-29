@@ -7,7 +7,6 @@ type DeleteProps = {
   onCloseModal?: () => void;
 };
 function ConfirmDelete({ item, onCloseModal }: DeleteProps) {
-  console.log();
   const { DeleleteProduct, isPendingDelete } = useDeleteProduct();
   function handleDeleteProduct() {
     DeleleteProduct(item.id);

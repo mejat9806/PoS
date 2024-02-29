@@ -22,7 +22,7 @@ function Burger() {
   const BurgerChickenitem: ProductDataProps[] = sortedProductData.filter(
     (product) => product.category === "burger_chicken",
   );
-  console.log();
+
   if (error) {
     toast.error("Something when wrong");
     return <Error>Fetching Burger data fail </Error>;
