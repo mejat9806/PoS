@@ -94,7 +94,7 @@ function Toggle({ id }: ToggleProps) {
       const distanceToBottom = window.innerHeight - rect.bottom; //this will calculate the distance from the bottom of the viewport for any element that to close to the bottom of the the page
       const distanceToRight = window.innerWidth - rect.right; //this will calculate the distance from the right  of the viewport for any element that to close to the right of the the page to prevent the drop down menu to not show up
       const buffer = 200; // Adjust this value as needed
-      //console.log(distanceToBottom, distanceToRight, newRectPosition.x);
+      //(distanceToBottom, distanceToRight, newRectPosition.x);
       // Move the position up if it's too close to the bottom
       if (distanceToBottom < buffer) {
         newRectPosition.y = Math.max(

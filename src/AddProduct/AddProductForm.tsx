@@ -50,10 +50,10 @@ function AddProductForm({ onCloseModal }: addProductsProps) {
   } = useForm();
   const selectedCategory = watch("category");
   //const categoryToWatched = selectedCategory;
-  //console.log()
-  //console.log()
+  //()
+  //()
   //const testgetvalue = getValues("name");//this just a test getvalue
-  //console.log(testgetvalue);
+  //(testgetvalue);
   const { errors } = formState;
   /*  const ValidationForcategoryWithNoImageAndDescription = {
     required: !NoImageAndDescription.includes(categoryToWatched)

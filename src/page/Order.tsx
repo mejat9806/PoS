@@ -21,7 +21,7 @@ function Order() {
     if (field === "created_at") {
       const dateA = new Date(a.created_at).getTime();
       const dateB = new Date(b.created_at).getTime();
-      console.log(dateA);
+      dateA;
       return (dateA - dateB) * modifier;
     } else {
       const fieldValueA = a[field as keyof OrderType];

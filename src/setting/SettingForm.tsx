@@ -15,7 +15,7 @@ function SettingForm() {
   const orderQtyRef = useRef<HTMLInputElement>(null);
   const taxRateRef = useRef<HTMLInputElement>(null);
   const tableNo = useRef<HTMLInputElement>(null);
-  //console.log()
+  //()
   useEffect(() => {
     orderQtyRef.current?.focus();
   }, []);

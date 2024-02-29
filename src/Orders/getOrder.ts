@@ -33,7 +33,7 @@ export async function getOrderData({
 
 export async function getTodayOrder({ page }: { page: number }) {
   const today = getToday(); // Get today's date
-  console.log(today);
+  today;
   const startDate = `${today}T00:00:00.000Z`; // Start at 8:00 AM MYT
   const endDate = `${today}T22:00:00.000Z`; // End at 10:00 PM MYT
   let query = supabase
@@ -77,7 +77,7 @@ export async function getTodayOrderforWidget() {
 
 export async function getOrderByDate(queryDate: string) {
   const today = getToday();
-  console.log(today);
+  today;
   const { data, error } = await supabase
     .from("orders")
     .select("*")

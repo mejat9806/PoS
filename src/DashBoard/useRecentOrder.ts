@@ -10,7 +10,7 @@ function useRecentOrder() {
     : Number(searchParams.get("last"));
   const date = subDays(new Date(), numDays); // Get the date in local MY timezone
   const isoDate = date.toISOString().split("T")[0]; // Convert to ISO string without time par
-  console.log(isoDate, "recentorder");
+  isoDate, "recentorder";
 
   const {
     isLoading: isLoadingDate,
