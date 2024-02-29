@@ -50,7 +50,7 @@ function Cart({ setOpenCart, toggleDialog }: PropTypes) {
   const [tableNo, setTableNo] = useState<string | number>("select table");
   const { isLoadingSetting, settingData } = useSettings();
   const { isUpdatingSetting } = useUpdateSetting();
-  const { orderData, loadingOrderdata } = useOrderData();
+  const { loadingOrderdata } = useOrderData();
   console.log();
   const carts = useSelector(getChart);
   const cartPrice = useSelector(getCartPrice);

@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createSlice } from "@reduxjs/toolkit";
 
 export type cartType = {
-  id: string;
+  id: number;
   name: string;
   quantity: number;
   price: number;
@@ -56,14 +57,14 @@ export const getQuantity = (state: any) =>
     0,
   );
 
-export const getCartPrice = (state) =>
+export const getCartPrice = (state: { carts: { cart: cartType[] } }) =>
   state.carts.cart.reduce(
-    (sum: number, pizza: { totalPrice: number }) => sum + pizza?.totalPrice,
+    (sum: number, pizza: cartType) => sum + (pizza?.totalPrice ?? 0),
     0,
   );
 
 export function getCurrentQuantityById(id: number) {
-  return function (state) {
+  return function (state: { carts: { cart: cartType[] } }) {
     return state.carts.cart.find((item) => item.id === id)?.quantity ?? 0;
   };
 }

@@ -5,8 +5,8 @@ export type settingsDataTypes = {
   tax_rate?: number;
 };
 
-const { data, error } = await supabase.from("settings").select("*").single();
 export async function getSetting() {
+  const { data, error } = await supabase.from("settings").select("*").single();
   if (error) {
     console.log();
     throw new Error(error.message);
