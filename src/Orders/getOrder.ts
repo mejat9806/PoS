@@ -12,16 +12,28 @@ export type OrderType = {
   created_at?: any;
 };
 
-export async function getOrderData(): Promise<OrderType[]> {
-  const { data, error } = await supabase.from("orders").select("*");
-  if (error) {
+export async function getOrderData({
+  page,
+}: {
+  page: number;
+}): Promise<{ data: OrderType[]; countValue: number }> {
+  let query = supabase.from("orders").select("*", { count: "exact" });
+  if (page) {
+    const from = (page - 1) * PAGE_SIZE;
+    const to = from + PAGE_SIZE - 1;
+    query = query.range(from, to);
+  }
+  const { data, error, count } = await query;
+  if (error instanceof Error) {
     throw new Error(error.message);
   }
-  return data;
+  const countValue = count !== null ? count : 0;
+  return { data: data as OrderType[], countValue };
 }
+
 export async function getTodayOrder({ page }: { page: number }) {
   const today = getToday(); // Get today's date
-  console.log();
+
   const startDate = `${today}T00:00:00.000Z`; // Start at 8:00 AM MYT
   const endDate = `${today}T14:00:00.000Z`; // End at 10:00 PM MYT
   let query = supabase

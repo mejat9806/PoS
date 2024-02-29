@@ -4,9 +4,10 @@ import OrderDataTable from "../UI/OrderDataTable";
 import Spinner from "../UI/Spinner";
 import Table from "../UI/Table";
 import TitleForPage from "../UI/TitleForPage";
+import Pagination from "../UI/Pagination";
 
 function Order() {
-  const { orderData, loadingOrderdata } = useOrderData();
+  const { orderData, loadingOrderdata, countValue } = useOrderData();
   //console.log(orderData, loadingOrderdata);
   if (loadingOrderdata) return <Spinner />;
 
@@ -16,16 +17,13 @@ function Order() {
     const dateB = parseISO(b.created_at);
     return dateA.getTime() - dateB.getTime();
   });
-
-  console.log(sortedOrderData);
-
-  console.log(sortedOrderData);
+  console.log(orderData);
   return (
     <div className="">
       <TitleForPage title="Order" />
       <div className="flex justify-center">
         <div className="w-1/2">
-          <Table columns="grid grid-cols-todayActivity">
+          <Table columns="grid grid-cols-orderTable">
             <Table.Header>
               <div className="tableHeader ">ID</div>
               <div className="tableHeader ">Date</div>
@@ -33,7 +31,7 @@ function Order() {
               <div className="tableHeader">Price</div>
             </Table.Header>
             <Table.Body
-              data={sortedOrderData}
+              data={orderData}
               render={(data) => <OrderDataTable data={data} key={data.id} />}
             />
           </Table>
@@ -44,6 +42,7 @@ function Order() {
           <h1>{formatDate(data.created_at)}</h1>
         </div>
       ))} */}
+      <Pagination countValue={countValue} />
     </div>
   );
 }
