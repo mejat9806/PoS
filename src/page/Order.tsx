@@ -1,4 +1,3 @@
-import { parseISO } from "date-fns";
 import { useOrderData } from "../Orders/useOrderData";
 import OrderDataTable from "../UI/OrderDataTable";
 import Spinner from "../UI/Spinner";
@@ -12,11 +11,7 @@ function Order() {
   if (loadingOrderdata) return <Spinner />;
 
   // Assuming orderData is your array of objects
-  const sortedOrderData = orderData?.sort((a, b) => {
-    const dateA = parseISO(a.created_at);
-    const dateB = parseISO(b.created_at);
-    return dateA.getTime() - dateB.getTime();
-  });
+
   console.log(orderData);
   return (
     <div className="">
