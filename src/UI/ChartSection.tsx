@@ -11,7 +11,6 @@ import useTodayActivity from "../DashBoard/useTodayActivity";
 export function ChartSection() {
   const { dataBasedOnDate, isLoadingDate } = useRecentOrder();
   const { isTodayActivity, todayActivity } = useTodayActivity();
-  todayActivity, dataBasedOnDate;
   const [openChart, setOpenChart] = useState<boolean>(true);
   const [searchParams] = useSearchParams();
   if (isLoadingDate || isTodayActivity) return <Spinner />;
