@@ -12,11 +12,10 @@ const Drink = lazy(() => import("./page/Drink"));
 const Pizza = lazy(() => import("./page/Pizza"));
 const SpecialMenu = lazy(() => import("./page/SpecialMenu"));
 const Side = lazy(() => import("./page/Side"));
-const Setting = lazy(() => import("./page/Side"));
+const Setting = lazy(() => import("./page/Setting"));
 const PageNotFound = lazy(() => import("./page/PageNotFound"));
 const Order = lazy(() => import("./page/Order"));
-const CreateOrder = lazy(() => import("./page/Order"));
-const OrderDetail = lazy(() => import("./page/OrderDetail"));
+const CreateOrder = lazy(() => import("./page/CreateOrder"));
 
 function App() {
   return (
@@ -38,7 +37,6 @@ function App() {
             <Route path="order" element={<Order />} />
 
             <Route path="createorder" element={<CreateOrder />} />
-            <Route path="order/:id" element={<OrderDetail />} />
             <Route path="*" element={<PageNotFound />} />
           </Route>
         </Routes>

@@ -29,7 +29,7 @@ function HomePage() {
   }
 
   return (
-    <div className="mr-5 w-[70%] sm:mr-10">
+    <div className="mr-5 w-[full] sm:mr-10 sm:w-[70%]">
       <DashBoard />
       {showPopUp && (
         <PopUpMessage setShowPopUp={setShowPopUp} showPopUp={showPopUp} />

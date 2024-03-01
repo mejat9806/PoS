@@ -2,7 +2,6 @@ import { NavLink } from "react-router-dom";
 import Logo from "./Logo";
 import { IoIosSettings } from "react-icons/io";
 import Icon from "./Icon";
-import { RiLogoutCircleFill } from "react-icons/ri";
 import { GiFrenchFries, GiMeat } from "react-icons/gi";
 import { FaAddressBook, FaHamburger, FaPizzaSlice } from "react-icons/fa";
 import { MdLocalDrink } from "react-icons/md";
@@ -27,7 +26,7 @@ const toItem: string[] = [
   "drink",
   "order",
 ];
-const toOther: string[] = ["setting", "logout"];
+const toOther: string[] = ["setting"];
 const toItemIcon: WithIcon[] = [
   { name: "/", icon: <HiHomeModern /> },
   { name: "bbq", icon: <GiMeat /> },
@@ -38,10 +37,7 @@ const toItemIcon: WithIcon[] = [
   { name: "drink", icon: <MdLocalDrink /> },
   { name: "order", icon: <FaAddressBook /> },
 ];
-const toOtherIcon: WithIcon[] = [
-  { name: "logout", icon: <RiLogoutCircleFill /> },
-  { name: "setting", icon: <IoIosSettings /> },
-];
+const toOtherIcon: WithIcon[] = [{ name: "setting", icon: <IoIosSettings /> }];
 
 function Nav({ setOpen, open }: ProptypesNav) {
   function closeOnClick() {

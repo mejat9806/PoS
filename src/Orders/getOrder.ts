@@ -11,18 +11,25 @@ export type OrderType = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   created_at: string;
 };
-
+type getOrderType = {
+  page: number;
+  sortBy: { field: string; direction: string };
+};
 export async function getOrderData({
   page,
-}: {
-  page: number;
-}): Promise<{ data: OrderType[]; countValue: number }> {
+  sortBy,
+}: getOrderType): Promise<{ data: OrderType[]; countValue: number }> {
+  console.log(sortBy);
   let query = supabase.from("orders").select("*", { count: "exact" });
   if (page) {
     const from = (page - 1) * PAGE_SIZE;
     const to = from + PAGE_SIZE - 1;
     query = query.range(from, to);
   }
+  if (sortBy)
+    query = query.order(sortBy.field, {
+      ascending: sortBy.direction === "asc",
+    });
   const { data, error, count } = await query;
   if (error instanceof Error) {
     throw new Error(error.message);

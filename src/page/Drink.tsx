@@ -22,18 +22,18 @@ function Drink() {
   return (
     <DropDownMenus>
       <div>
-        <h1 className="md:text-9xl text-3xl font-roboto font-extrabold uppercase mb-6  flex">
+        <h1 className="mb-6 flex font-roboto text-3xl font-extrabold uppercase  md:text-9xl">
           Drink{" "}
-          <span className="text-yellow-400 rotate-[270deg]">
+          <span className="rotate-[270deg] text-yellow-400">
             <MdOutlineSubdirectoryArrowLeft />
           </span>
         </h1>
         <div className="flex justify-center">
-          <div className="grid xl:grid-cols-3 gap-3  w-max h-full sm:grid-cols-2 lg:grid-cols-3 grid-cols-1 transition-all duration-150">
+          <div className="grid h-full w-fit  grid-cols-1 grid-cols-2 gap-3 transition-all duration-150 lg:grid-cols-3 xl:grid-cols-3">
             {drinkData.map((drink) => (
               <div
                 key={drink.id}
-                className="odd:bg-gray-200/30 gap-3 rounded-md  "
+                className="gap-3 rounded-md odd:bg-gray-200/30  "
               >
                 <MenuItemCard item={drink} />
               </div>

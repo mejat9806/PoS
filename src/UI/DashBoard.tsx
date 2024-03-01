@@ -39,7 +39,7 @@ function DashBoard() {
   const sale = searchParams.get("last") === "1" ? todayTotalSales : saleTotal;
   return (
     <div className="container mx-auto max-w-[100%] ">
-      <div className="  flex w-full flex-col justify-between sm:my-10 sm:flex-row">
+      <div className="  flex w-full flex-col justify-between sm:my-10 md:flex-row">
         <h1 className=" mb-10 font-roboto text-4xl font-bold">DashBoard</h1>
         <div className="flex gap-4 ">
           <DashBoardFilter />

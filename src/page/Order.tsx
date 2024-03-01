@@ -17,7 +17,7 @@ function Order() {
   const [field, direction] = sortBy.split("-");
   const modifier = direction === "asc" ? 1 : -1; //if it asc it wll be always positive because of the sort algo
 
-  const sortedOrderData = orderData.slice().sort((a, b) => {
+  orderData?.sort((a, b) => {
     if (field === "created_at") {
       const dateA = new Date(a.created_at).getTime();
       const dateB = new Date(b.created_at).getTime();
@@ -41,26 +41,30 @@ function Order() {
   });
 
   return (
-    <div className="">
+    <div>
       <TitleForPage title="Order" />
-      <OrderTableOperation />
-      <div className="flex justify-center">
-        <div className="">
-          <Table columns="grid grid-cols-orderTable">
-            <Table.Header>
-              <div className="tableHeader ">ID</div>
-              <div className="tableHeader ">Date</div>
-              <div className="tableHeader">Order</div>
-              <div className="tableHeader">Price</div>
-            </Table.Header>
-            <Table.Body
-              data={sortedOrderData}
-              render={(data) => <OrderDataTable data={data} key={data.id} />}
-            />
-          </Table>
+      <div className="mb-11 flex flex-col">
+        <div className="flex w-full justify-center">
+          <div className="w-full  sm:mx-10 xl:w-1/2">
+            <OrderTableOperation />
+            <Table columns="grid grid-cols-orderTable">
+              <Table.Header>
+                <div className="tableHeader ">ID</div>
+                <div className="tableHeader ">Date</div>
+                <div className="tableHeader">Order</div>
+                <div className="tableHeader">Price</div>
+              </Table.Header>
+              <Table.Body
+                data={orderData}
+                render={(data) => <OrderDataTable data={data} key={data.id} />}
+              />
+            </Table>
+          </div>
+        </div>
+        <div className="mb-10">
+          <Pagination countValue={countValue} />
         </div>
       </div>
-      <Pagination countValue={countValue} />
     </div>
   );
 }

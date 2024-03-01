@@ -22,12 +22,12 @@ function ChartSlider({ saleCartSliderItem }: sliderChart) {
   }
 
   return (
-    <div className="flex items-center justify-center gap-3">
+    <div className="flex items-center justify-center sm:gap-3">
       <div className="sliderButton " onClick={PrevSlide}>
         <GrPrevious />
       </div>
 
-      <main>{saleCartSliderItem[ChartIndex]}</main>
+      <main className="">{saleCartSliderItem[ChartIndex]}</main>
       <div className="sliderButton " onClick={NextSlide}>
         <GrNext />
       </div>

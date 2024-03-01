@@ -9,7 +9,7 @@ export default {
         cart: "1fr 1fr 0.25fr 0.25fr",
         booking: "0.2fr 1fr 0.02fr 0.2fr",
         todayActivity: "0.2fr 0.1fr 1fr 0.2fr  ",
-        orderTable: "0.2fr 0.5fr 1fr 0.5fr  ",
+        orderTable: "0.2fr 0.5fr 1.2fr 0.8fr  ",
       },
       fontFamily: {
         roboto: "Roboto Mono, monospace ,sans-serif",

@@ -52,7 +52,7 @@ export function ChartSection() {
   return (
     <>
       <div
-        className={`container mx-auto max-w-[100%] ${openChart ? "h-full" : "h-full"}`}
+        className={`container mx-auto max-w-[100%] ${openChart ? "h-full" : "h-full"} hidden sm:block`}
       >
         <div className="flex justify-between">
           <h1
@@ -69,19 +69,23 @@ export function ChartSection() {
             )}
           </button>
         </div>
-        {openChart ? (
-          <section>
-            {!dataBasedOnDate || dataBasedOnDate.length === 0 ? (
-              <h1 className="flex  items-center justify-center font-roboto font-extrabold">
-                No sale data to show
-              </h1>
-            ) : (
-              <ChartSlider saleCartSliderItem={saleCartSliderItem} />
-            )}
-          </section>
-        ) : (
-          ""
-        )}
+        <div>
+          {openChart ? (
+            <section>
+              {!dataBasedOnDate || dataBasedOnDate.length === 0 ? (
+                <h1 className="flex  items-center justify-center font-roboto font-extrabold">
+                  No sale data to show
+                </h1>
+              ) : (
+                <div className="flex justify-center">
+                  <ChartSlider saleCartSliderItem={saleCartSliderItem} />
+                </div>
+              )}
+            </section>
+          ) : (
+            ""
+          )}
+        </div>
       </div>
     </>
   );
