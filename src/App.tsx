@@ -1,22 +1,22 @@
-import { Suspense } from "react";
+import { Suspense, lazy } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Spinner from "./UI/Spinner";
-import HomePage from "./page/HomePage";
-import AppLayout from "./page/AppLayout";
-import BBQ from "./page/BBQ";
-import Burger from "./page/Burger";
-import Drink from "./page/Drink";
-import Pizza from "./page/Pizza";
-import Side from "./page/Side";
-import PageNotFound from "./page/PageNotFound";
-import Order from "./page/Order";
-import OrderDetail from "./page/OrderDetail";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
-import SpecialMenu from "./page/SpecialMenu";
+import Spinner from "./UI/Spinner";
+import AppLayout from "./page/AppLayout";
 import MainLayOut from "./page/MainLayOut";
-import Setting from "./page/Setting";
-import CreateOrder from "./page/CreateOrder";
+const HomePage = lazy(() => import("./page/HomePage"));
+const BBQ = lazy(() => import("./page/BBQ"));
+const Burger = lazy(() => import("./page/Burger"));
+const Drink = lazy(() => import("./page/Drink"));
+const Pizza = lazy(() => import("./page/Pizza"));
+const SpecialMenu = lazy(() => import("./page/SpecialMenu"));
+const Side = lazy(() => import("./page/Side"));
+const Setting = lazy(() => import("./page/Side"));
+const PageNotFound = lazy(() => import("./page/PageNotFound"));
+const Order = lazy(() => import("./page/Order"));
+const CreateOrder = lazy(() => import("./page/Order"));
+const OrderDetail = lazy(() => import("./page/OrderDetail"));
 
 function App() {
   return (
